@@ -6,15 +6,15 @@
     <title>RG2K25 - Battle Royale Server</title>
     
     <!-- Meta Preview -->
-    <meta name="description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft PvP experience with custom modpack. Server IP: rg2k25.mcboss.top">
+    <meta name="description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft Minecraft BattlRoyal experience with Guns. Server IP: rg2k25.mcboss.top">
     <meta property="og:title" content="RG2K25 - Battle Royale Server">
-    <meta property="og:description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft PvP experience with custom modpack">
+    <meta property="og:description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft BattlRoyal experience with Guns">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RG2K25 - Battle Royale Server">
-    <meta name="twitter:description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft PvP experience">
+    <meta name="twitter:description" content="Join RG2K25 Battle Royale Server - Ultimate Minecraft Minecraft BattlRoyal experience with Guns.">
     
     <!-- Dynamic Favicon -->
     <link rel="icon" type="image/png" id="favicon">
@@ -37,20 +37,20 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 0;
+            margin-bottom: 20px;
+            padding: 20px 15px;
             background: 
                 linear-gradient(45deg, rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
-                url('header background.jpg');
+                url('https://rg2k25-battleroyale.mcboss.top/header%20background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border-radius: 20px;
+            border-radius: 15px;
             border: 2px solid #8B0000;
             box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
             position: relative;
@@ -74,17 +74,17 @@
         }
 
         .server-logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 15px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            border-radius: 12px;
             border: 3px solid #8B0000;
             box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
             background: #2d2d2d;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             animation: logoGlow 3s ease-in-out infinite alternate;
         }
 
@@ -94,15 +94,16 @@
         }
 
         .server-title {
-            font-size: 4rem;
+            font-size: 2.5rem;
             font-weight: bold;
             background: linear-gradient(45deg, #FF6B6B, #8B0000, #FFFFFF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
 
         @keyframes glow {
@@ -111,27 +112,30 @@
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             color: #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .server-status {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
             border: 2px solid #333;
-            margin-top: 15px;
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         .status-indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             animation: pulse 2s infinite;
+            flex-shrink: 0;
         }
 
         .status-online {
@@ -151,23 +155,28 @@
         }
 
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .server-info {
             background: rgba(0, 0, 0, 0.6);
             border: 2px solid #8B0000;
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px 15px;
             backdrop-filter: blur(10px);
+            order: 1;
+        }
+
+        .gallery-section {
+            order: 2;
         }
 
         .motd-section {
-            margin: 20px 0;
-            padding: 20px;
+            margin: 15px 0;
+            padding: 15px;
             background: rgba(139, 0, 0, 0.1);
             border-radius: 10px;
             border: 1px solid #8B0000;
@@ -176,46 +185,48 @@
         .motd-title {
             color: #8B0000;
             font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
         }
 
         .motd-content {
             color: #fff;
-            line-height: 1.6;
-            font-size: 1rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            word-wrap: break-word;
         }
 
         .server-details {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 15px 0;
         }
 
         .detail-item {
             background: rgba(0, 0, 0, 0.4);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             border: 1px solid #333;
         }
 
         .detail-label {
             color: #8B0000;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
         }
 
         .detail-value {
             color: white;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            word-wrap: break-word;
         }
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
 
         .image-placeholder {
@@ -227,10 +238,11 @@
             align-items: center;
             justify-content: center;
             color: #8B0000;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 200px;
         }
 
         .image-placeholder::before {
@@ -254,16 +266,23 @@
             transform: scale(1.02);
         }
 
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         .ip-section {
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
         .ip-container {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
+            gap: 10px;
             background: rgba(0, 0, 0, 0.4);
-            padding: 15px 20px;
+            padding: 15px;
             border-radius: 10px;
             border: 1px solid #333;
             margin: 10px 0;
@@ -272,30 +291,33 @@
         .ip-label {
             font-weight: bold;
             color: #8B0000;
-            min-width: 80px;
+            font-size: 0.9rem;
         }
 
         .ip-address {
-            flex: 1;
             font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: white;
             background: rgba(139, 0, 0, 0.1);
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 5px;
             border: 1px solid #8B0000;
+            text-align: center;
+            width: 100%;
         }
 
         .copy-btn {
             background: linear-gradient(45deg, #8B0000, #B22222);
             border: none;
             color: white;
-            padding: 8px 16px;
+            padding: 12px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            font-size: 1rem;
+            width: 100%;
         }
 
         .copy-btn:hover {
@@ -310,13 +332,13 @@
 
         .download-section {
             text-align: center;
-            margin: 40px 0;
+            margin: 25px 0;
         }
 
         .modpack-info {
             color: #ccc;
             margin-bottom: 15px;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .forge-version {
@@ -329,15 +351,17 @@
             background: linear-gradient(45deg, #8B0000, #B22222);
             color: white;
             text-decoration: none;
-            padding: 20px 40px;
-            border-radius: 15px;
-            font-size: 1.5rem;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 300px;
         }
 
         .download-btn::before {
@@ -360,14 +384,16 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(139, 0, 0, 0.6);
             border-color: #FF6B6B;
+            text-decoration: none;
+            color: white;
         }
 
         /* Discord Card Styles */
         .discord-card {
             background: linear-gradient(135deg, #5865F2, #404EED);
             border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 15px 0;
             box-shadow: 0 8px 25px rgba(88, 101, 242, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -403,47 +429,49 @@
         .discord-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .discord-icon {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
             color: #5865F2;
             font-weight: bold;
+            flex-shrink: 0;
         }
 
         .discord-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             margin: 0;
         }
 
         .discord-description {
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             line-height: 1.4;
+            font-size: 0.9rem;
         }
 
         .discord-info {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.8);
         }
 
         .discord-members {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .discord-status {
@@ -452,32 +480,37 @@
             background: #00FF00;
             border-radius: 50%;
             animation: pulse 2s infinite;
+            flex-shrink: 0;
         }
 
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
+            left: 20px;
             background: linear-gradient(45deg, #228B22, #32CD32);
             color: white;
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            transform: translateX(400px);
+            transform: translateY(-100px);
             transition: transform 0.3s ease;
             z-index: 1000;
+            text-align: center;
+            font-size: 0.9rem;
         }
 
         .notification.show {
-            transform: translateX(0);
+            transform: translateY(0);
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #8B0000;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
         }
 
         .loading {
@@ -485,32 +518,189 @@
             font-style: italic;
         }
 
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
             }
-            
+
+            .header {
+                padding: 30px 20px;
+                margin-bottom: 30px;
+            }
+
+            .server-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
             .server-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
-            
-            .ip-container {
-                flex-direction: column;
-                align-items: stretch;
+
+            .subtitle {
+                font-size: 1.3rem;
             }
-            
-            .ip-address {
-                text-align: center;
+
+            .main-content {
+                gap: 25px;
+            }
+
+            .server-info {
+                padding: 25px 20px;
             }
 
             .server-details {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .ip-container {
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .ip-label {
+                min-width: 80px;
+                flex-shrink: 0;
+            }
+
+            .ip-address {
+                flex: 1;
+                text-align: left;
+            }
+
+            .copy-btn {
+                width: auto;
+                padding: 8px 16px;
+            }
+
+            .download-btn {
+                width: auto;
+                padding: 18px 35px;
+                font-size: 1.3rem;
             }
 
             .discord-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .notification {
+                right: 20px;
+                left: auto;
+                transform: translateX(400px);
+            }
+
+            .notification.show {
+                transform: translateX(0);
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .header {
+                padding: 40px;
+                margin-bottom: 40px;
+            }
+
+            .server-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .server-title {
+                font-size: 4rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .server-info {
+                padding: 30px;
+                order: 0;
+            }
+
+            .gallery-section {
+                order: 0;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Large desktop styles */
+        @media (min-width: 1200px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        /* Fix for very small screens */
+        @media (max-width: 320px) {
+            .container {
+                padding: 8px;
+            }
+
+            .server-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .server-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .download-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Touch improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .copy-btn, .download-btn, .discord-card {
+                min-height: 44px;
+            }
+
+            .image-placeholder:hover {
+                transform: none;
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .server-logo, .discord-icon {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
             }
         }
     </style>
@@ -584,13 +774,13 @@
                 <h2 class="section-title">Server Gallery</h2>
                 <div class="gallery">
                     <div class="image-placeholder">
-                        <img src="image 1 .png" alt="Server Screenshot 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="https://rg2k25-battleroyale.mcboss.top/image%201%20.png" alt="Server Screenshot 1">
                     </div>
                     <div class="image-placeholder">
-                        <img src="image 2 .png" alt="Battle Arena" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="https://rg2k25-battleroyale.mcboss.top/image%202%20.png" alt="Battle Arena">
                     </div>
                     <div class="image-placeholder">
-                        <img src="image 3 .png" alt="Victory Screen" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="https://rg2k25-battleroyale.mcboss.top/image%203%20.png" alt="Victory Screen">
                     </div>
                 </div>
             </div>
