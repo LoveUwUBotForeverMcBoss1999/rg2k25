@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rate RG2K25 Battle Royal - Minecraft Server</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Rate RG2K25 Battle Royal | Minecraft Server</title>
+    
+    <!-- Meta Preview -->
+    <meta name="description" content="Rate your experience on RG2K25 Battle Royal Minecraft Server. Share your feedback and help us improve!">
+    <meta property="og:title" content="Rate RG2K25 Battle Royal | Minecraft Server">
+    <meta property="og:description" content="Rate your experience on RG2K25 Battle Royal Minecraft Server. Share your feedback and help us improve!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rg2k25-battleroyale.mcboss.top/">
+    <meta property="og:image" content="https://rg2k25-battleroyale.mcboss.top/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rate RG2K25 Battle Royal | Minecraft Server">
+    <meta name="twitter:description" content="Rate your experience on RG2K25 Battle Royal Minecraft Server. Share your feedback and help us improve!">
+    
     <style>
         * {
             margin: 0;
@@ -14,10 +25,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
             min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
         }
 
@@ -29,193 +39,160 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
-            z-index: 1;
         }
 
         .header {
             text-align: center;
             margin-bottom: 40px;
-            animation: fadeInDown 1s ease-out;
         }
 
-        .server-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            border-radius: 15px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: #0f0f23;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .title {
+        .server-title {
             font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #a0a0a0;
-            margin-bottom: 10px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
         }
 
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .link {
-            color: #00ccff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .link:hover {
-            color: #00ff88;
-        }
-
-        .rating-form {
+        .rating-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 1s ease-out 0.3s both;
+            transition: all 0.3s ease;
+        }
+
+        .rating-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         .form-group {
             margin-bottom: 25px;
         }
 
-        .form-label {
+        label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #ffffff;
-            font-size: 1rem;
+            color: #e0e0e0;
         }
 
-        .form-input {
+        input[type="email"], input[type="text"], textarea {
             width: 100%;
             padding: 15px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
-            font-size: 1rem;
+            font-size: 16px;
             transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        input[type="email"]:focus, input[type="text"]:focus, textarea:focus {
             outline: none;
-            border-color: #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .form-input::placeholder {
-            color: #a0a0a0;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
         }
 
         .star-rating {
             display: flex;
-            gap: 10px;
+            gap: 5px;
+            margin-bottom: 10px;
             justify-content: center;
-            margin: 20px 0;
         }
 
         .star {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #444;
             cursor: pointer;
-            transition: all 0.3s ease;
-            transform: scale(1);
+            transition: all 0.2s ease;
+            user-select: none;
         }
 
         .star:hover,
         .star.active {
             color: #ffd700;
-            transform: scale(1.2);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            transform: scale(1.1);
         }
 
         .star:hover ~ .star {
             color: #444;
             transform: scale(1);
-            text-shadow: none;
         }
 
         .rating-text {
             text-align: center;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #ffd700;
-            min-height: 30px;
-        }
-
-        .textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            font-size: 1rem;
-            resize: vertical;
-            min-height: 100px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .textarea:focus {
-            outline: none;
-            border-color: #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 20px;
         }
 
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
             border: none;
-            border-radius: 15px;
-            color: #0f0f23;
-            font-size: 1.2rem;
+            border-radius: 10px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            transform: translateY(0);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
         }
 
         .submit-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: translateY(0);
+            transform: none;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .link {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            border-radius: 25px;
+        }
+
+        .link:hover {
+            color: #ffffff;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
         }
 
         .thank-you-overlay {
@@ -224,81 +201,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             display: none;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             z-index: 1000;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .thank-you-content {
-            text-align: center;
-            padding: 40px;
-            animation: zoomIn 0.8s ease-out;
-        }
-
-        .thank-you-icon {
-            font-size: 5rem;
-            color: #00ff88;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-
-        .thank-you-title {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .thank-you-message {
-            font-size: 1.3rem;
-            color: #a0a0a0;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .back-btn {
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #00ff88;
-            border-radius: 10px;
-            color: #00ff88;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: #00ff88;
-            color: #0f0f23;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
@@ -306,71 +214,43 @@
             to { opacity: 1; }
         }
 
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .thank-you-content {
+            text-align: center;
+            padding: 40px;
+            animation: slideUp 0.6s ease;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
                 transform: translateY(0);
             }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
         }
 
-        .background-decoration {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
+        .thank-you-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 20px;
         }
 
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
+        .thank-you-message {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
         }
 
-        .bg-circle:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            right: -150px;
-            animation-delay: 0s;
-        }
-
-        .bg-circle:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            bottom: -100px;
-            left: -100px;
-            animation-delay: 3s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(-20px) scale(1.1);
-                opacity: 0.8;
-            }
+        .required {
+            color: #ff6b6b;
         }
 
         @media (max-width: 768px) {
@@ -378,107 +258,84 @@
                 padding: 15px;
             }
             
-            .title {
+            .server-title {
                 font-size: 2rem;
             }
             
-            .rating-form {
-                padding: 30px 20px;
+            .rating-card {
+                padding: 25px;
+            }
+            
+            .links {
+                flex-direction: column;
+                gap: 15px;
             }
             
             .star {
-                font-size: 2.5rem;
-            }
-            
-            .thank-you-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-decoration">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-    </div>
-
     <div class="container">
         <div class="header">
-            <div class="server-logo">RG</div>
-            <h1 class="title">Rate Our Server</h1>
-            <p class="subtitle">RG2K25 Battle Royal Minecraft Server</p>
-            <div class="links">
-                <a href="https://rg2k25-battleroyale.mcboss.top/" class="link" target="_blank">
-                    <i class="fas fa-globe"></i> Official Website
-                </a>
-                <a href="https://discord.gg/7KvVQWxtR2" class="link" target="_blank">
-                    <i class="fab fa-discord"></i> Discord
-                </a>
-            </div>
+            <h1 class="server-title">RG2K25 Battle Royal</h1>
+            <p class="subtitle">Rate Your Minecraft Server Experience</p>
         </div>
 
-        <form class="rating-form" id="ratingForm">
-            <div class="form-group">
-                <label class="form-label" for="email">
-                    <i class="fas fa-envelope"></i> Email Address *
-                </label>
-                <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-star"></i> Rate Your Experience *
-                </label>
-                <div class="star-rating" id="starRating">
-                    <span class="star" data-rating="1">★</span>
-                    <span class="star" data-rating="2">★</span>
-                    <span class="star" data-rating="3">★</span>
-                    <span class="star" data-rating="4">★</span>
-                    <span class="star" data-rating="5">★</span>
+        <div class="rating-card">
+            <form id="ratingForm">
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
                 </div>
-                <div class="rating-text" id="ratingText">Click stars to rate</div>
-            </div>
 
-            <div class="form-group">
-                <label class="form-label" for="comment">
-                    <i class="fas fa-comment"></i> Additional Comments (Optional)
-                </label>
-                <textarea class="textarea" id="comment" placeholder="Tell us about your experience on RG2K25 Battle Royal server..."></textarea>
-            </div>
+                <div class="form-group">
+                    <label>Overall Rating <span class="required">*</span></label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <div class="rating-text" id="ratingText">Click to rate</div>
+                </div>
 
-            <div class="form-group">
-                <label class="form-label" for="discordUsername">
-                    <i class="fab fa-discord"></i> Discord Username (Optional)
-                </label>
-                <input type="text" class="form-input" id="discordUsername" placeholder="YourDiscord#1234">
-            </div>
+                <div class="form-group">
+                    <label for="comment">Comments</label>
+                    <textarea id="comment" name="comment" rows="4" placeholder="Share your experience with the server..."></textarea>
+                </div>
 
-            <div class="form-group">
-                <label class="form-label" for="ingameName">
-                    <i class="fas fa-gamepad"></i> In-Game Name (Optional)
-                </label>
-                <input type="text" class="form-input" id="ingameName" placeholder="YourMinecraftUsername">
-            </div>
+                <div class="form-group">
+                    <label for="discordUsername">Discord Username (Optional)</label>
+                    <input type="text" id="discordUsername" name="discordUsername" placeholder="YourUsername#1234">
+                </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <i class="fas fa-paper-plane"></i> Submit Rating
-            </button>
-        </form>
+                <div class="form-group">
+                    <label for="ingameName">In-Game Name (Optional)</label>
+                    <input type="text" id="ingameName" name="ingameName" placeholder="MinecraftUsername">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Rating</button>
+            </form>
+        </div>
+
+        <div class="links">
+            <a href="https://rg2k25-battleroyale.mcboss.top/" class="link" target="_blank">Official Website</a>
+            <a href="https://discord.gg/7KvVQWxtR2" class="link" target="_blank">Join Discord</a>
+        </div>
     </div>
 
     <div class="thank-you-overlay" id="thankYouOverlay">
         <div class="thank-you-content">
-            <div class="thank-you-icon">
-                <i class="fas fa-check-circle"></i>
+            <h1 class="thank-you-title">Thank You!</h1>
+            <p class="thank-you-message">Your rating has been submitted successfully.<br>We appreciate your feedback!</p>
+            <div class="links">
+                <a href="https://rg2k25-battleroyale.mcboss.top/" class="link" target="_blank">Back to Website</a>
+                <a href="https://discord.gg/7KvVQWxtR2" class="link" target="_blank">Join Our Discord</a>
             </div>
-            <h2 class="thank-you-title">Thank You!</h2>
-            <p class="thank-you-message">
-                Your rating has been submitted successfully!<br>
-                We appreciate your feedback and will use it to improve RG2K25 Battle Royal server.
-            </p>
-            <button class="back-btn" onclick="resetForm()">
-                <i class="fas fa-arrow-left"></i> Submit Another Rating
-            </button>
         </div>
     </div>
 
@@ -486,29 +343,40 @@
         let selectedRating = 0;
         const stars = document.querySelectorAll('.star');
         const ratingText = document.getElementById('ratingText');
-        const ratingTexts = {
-            1: '⭐ Poor',
-            2: '⭐⭐ Fair',
-            3: '⭐⭐⭐ Good',
-            4: '⭐⭐⭐⭐ Very Good',
-            5: '⭐⭐⭐⭐⭐ Excellent!'
+        const form = document.getElementById('ratingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const thankYouOverlay = document.getElementById('thankYouOverlay');
+
+        const ratingMessages = {
+            1: "Poor - Needs improvement",
+            2: "Fair - Could be better",
+            3: "Good - Decent experience",
+            4: "Very Good - Great server!",
+            5: "Excellent - Amazing experience!"
         };
 
-        // Star rating functionality
-        stars.forEach((star, index) => {
+        // Handle star rating
+        stars.forEach(star => {
             star.addEventListener('click', () => {
-                selectedRating = index + 1;
+                selectedRating = parseInt(star.dataset.rating);
                 updateStars();
-                ratingText.textContent = ratingTexts[selectedRating];
+                ratingText.textContent = ratingMessages[selectedRating];
             });
 
             star.addEventListener('mouseenter', () => {
-                highlightStars(index + 1);
+                const hoverRating = parseInt(star.dataset.rating);
+                highlightStars(hoverRating);
+                ratingText.textContent = ratingMessages[hoverRating];
             });
         });
 
         document.getElementById('starRating').addEventListener('mouseleave', () => {
             updateStars();
+            if (selectedRating > 0) {
+                ratingText.textContent = ratingMessages[selectedRating];
+            } else {
+                ratingText.textContent = "Click to rate";
+            }
         });
 
         function highlightStars(rating) {
@@ -522,88 +390,67 @@
         }
 
         function updateStars() {
-            stars.forEach((star, index) => {
-                if (index < selectedRating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
+            highlightStars(selectedRating);
         }
 
-        // Form submission
-        document.getElementById('ratingForm').addEventListener('submit', async (e) => {
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             if (selectedRating === 0) {
-                alert('Please select a star rating!');
+                alert('Please select a rating before submitting!');
                 return;
             }
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
             const email = document.getElementById('email').value;
             const comment = document.getElementById('comment').value;
             const discordUsername = document.getElementById('discordUsername').value;
             const ingameName = document.getElementById('ingameName').value;
 
-            // Format the message with all rating data
-            const message = `🌟 NEW SERVER RATING 🌟
-            
-⭐ Rating: ${selectedRating}/5 stars (${ratingTexts[selectedRating].replace(/⭐/g, '').trim()})
-📧 Email: ${email}
+            // Create structured message for the API
+            const ratingMessage = `
+🌟 NEW SERVER RATING 🌟
+
+Rating: ${'★'.repeat(selectedRating)}${'☆'.repeat(5-selectedRating)} (${selectedRating}/5)
+Experience: ${ratingMessages[selectedRating]}
+
 ${comment ? `💬 Comment: ${comment}` : ''}
 ${discordUsername ? `🎮 Discord: ${discordUsername}` : ''}
 ${ingameName ? `⚔️ In-Game: ${ingameName}` : ''}
 
-📅 Submitted: ${new Date().toLocaleString()}
-🎯 Server: RG2K25 Battle Royal`;
+📧 Email: ${email}
+🕐 Submitted: ${new Date().toLocaleString()}
+            `.trim();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
 
             try {
-                const response = await fetch('https://dms-api.mcboss.top/api/YOUR-API-KEY/send', {
+                const response = await fetch('https://dms-api.mcboss.top/api/iNjgvg9o0np4R9ztoX6GhdYn3Z9XIW2A/send', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         email: email,
-                        message: message
+                        message: ratingMessage
                     })
                 });
 
                 const result = await response.json();
 
                 if (result.status === 'success') {
-                    showThankYou();
+                    // Show thank you overlay
+                    thankYouOverlay.style.display = 'flex';
                 } else {
                     throw new Error(result.error || 'Unknown error occurred');
                 }
             } catch (error) {
                 alert('Error submitting rating: ' + error.message);
-                console.error('Submission error:', error);
-            } finally {
-                // Re-enable button
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
+                submitBtn.textContent = 'Submit Rating';
             }
         });
-
-        function showThankYou() {
-            document.getElementById('thankYouOverlay').style.display = 'flex';
-        }
-
-        function resetForm() {
-            document.getElementById('thankYouOverlay').style.display = 'none';
-            document.getElementById('ratingForm').reset();
-            selectedRating = 0;
-            updateStars();
-            ratingText.textContent = 'Click stars to rate';
-        }
     </script>
 </body>
 </html>
