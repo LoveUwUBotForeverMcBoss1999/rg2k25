@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discord Server Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #23272a;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 40px auto;
+            background: #2c2f33;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            max-width: 400px;
+            padding: 32px 20px 24px 20px;
+        }
+        img {
+            border-radius: 50%;
+            border: 4px solid #7289da;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+        .name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .description {
+            margin-bottom: 18px;
+            font-size: 1.1em;
+            color: #b9bbbe;
+        }
+        .counts {
+            margin-bottom: 20px;
+        }
+        .count-label {
+            color: #7289da;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .invite-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 18px;
+            background: #7289da;
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .invite-link:hover {
+            background: #5b6eae;
+        }
+        .error {
+            color: #f04747;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="server-container">
+        <div>Loading server info...</div>
+    </div>
+    <script>
+        const guildId = "1371914509467254937";
+        const inviteUrl = "https://discord.gg/7KvVQWxtR2";
+        const container = document.getElementById('server-container');
+
+        // Use Discord's invite API to get basic server info (logo, name, description, online count, member count)
+        fetch(`https://discord.com/api/v9/invites/7KvVQWxtR2?with_counts=true&with_expiration=false`)
+            .then(async resp => {
+                if (!resp.ok) throw new Error("Failed to fetch Discord invite data.");
+                return resp.json();
+            })
+            .then(data => {
+                const guild = data.guild;
+                const icon = guild.icon
+                    ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=256`
+                    : "https://cdn.discordapp.com/embed/avatars/0.png";
+                const name = guild.name || "Unknown Server";
+                const description = guild.description || "No description set.";
+                const presenceCount = data.approximate_presence_count || 0;
+                const memberCount = data.approximate_member_count || 0;
+
+                container.innerHTML = `
+                    <img src="${icon}" alt="Server Logo">
+                    <div class="name">${name}</div>
+                    <div class="description">${description}</div>
+                    <div class="counts">
+                        <span class="count-label">Online:</span> ${presenceCount}
+                        <br>
+                        <span class="count-label">Members:</span> ${memberCount}
+                    </div>
+                    <a class="invite-link" href="${inviteUrl}" target="_blank">Join Discord</a>
+                `;
+            })
+            .catch(err => {
+                container.innerHTML = `<div class="error">Unable to load server info.<br>${err.message}</div>`;
+            });
+    </script>
+</body>
+</html>
