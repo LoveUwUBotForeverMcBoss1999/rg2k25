@@ -338,7 +338,227 @@
             margin-top: auto;
         }
 
-        /* Responsive Design */
+        /* Thank You Screen */
+        .thank-you-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .thank-you-screen.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .thank-you-content {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .thank-you-icon {
+            font-size: 8rem;
+            color: var(--primary);
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            animation: pulse-glow 2s infinite;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            }
+            50% { 
+                transform: scale(1.05);
+                text-shadow: 0 0 80px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .thank-you-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+            margin-bottom: 1.5rem;
+            animation: title-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes title-glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .thank-you-subtitle {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .thank-you-message {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .thank-you-details {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 53, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .thank-you-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .thank-you-detail:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .detail-value {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .thank-you-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thank-you-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 53, 0.2));
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .thank-you-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 107, 53, 0.3));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .thank-you-btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            border-color: var(--primary);
+        }
+
+        .thank-you-btn.primary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            color: var(--primary);
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: float-up 6s linear infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Thank You Screen */
+        @media (max-width: 768px) {
+            .thank-you-icon {
+                font-size: 5rem;
+            }
+            
+            .thank-you-title {
+                font-size: 2.5rem;
+            }
+            
+            .thank-you-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .thank-you-message {
+                font-size: 1.1rem;
+            }
+            
+            .thank-you-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .thank-you-btn {
+                width: 80%;
+                justify-content: center;
+            }
+            
+            .thank-you-detail {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
         @media (max-width: 768px) {
             .page-title {
                 font-size: 2.5rem;
@@ -455,6 +675,37 @@
             </div>
         </div>
     </main>
+
+    <!-- Thank You Screen -->
+    <div class="thank-you-screen" id="thankYouScreen">
+        <div class="floating-particles" id="particles"></div>
+        <div class="thank-you-content">
+            <div class="thank-you-icon">🌟</div>
+            <h1 class="thank-you-title">THANK YOU!</h1>
+            <p class="thank-you-subtitle">Your rating has been submitted successfully!</p>
+            <p class="thank-you-message">
+                We truly appreciate your feedback and the time you took to rate our server. 
+                Your input helps us continue to improve and provide the best gaming experience possible.
+            </p>
+            <div class="thank-you-details" id="thankYouDetails">
+                <!-- Details will be populated by JavaScript -->
+            </div>
+            <div class="thank-you-actions">
+                <button class="thank-you-btn primary" onclick="goHome()">
+                    <i>🏠</i>
+                    Back to Home
+                </button>
+                <a href="https://discord.gg/cQQybxV8xW" class="thank-you-btn" target="_blank">
+                    <i>💬</i>
+                    Join Discord
+                </a>
+                <button class="thank-you-btn" onclick="submitAnother()">
+                    <i>⭐</i>
+                    Rate Again
+                </button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <p>© 2025 RG2K25 Elite Battle Royale. Dominate or be dominated. Not affiliated with Mojang Studios or Microsoft.</p>
@@ -590,13 +841,7 @@
                 if (response.ok) {
                     const result = await response.json();
                     console.log('API Response:', result);
-                    showStatus('Thank you for your rating! Your feedback has been submitted successfully.', 'success');
-                    form.reset();
-                    selectedRating = 0;
-                    updateStarDisplay();
-                    ratingText.textContent = ratingTexts[0];
-                    charCounter.textContent = '0/500 characters';
-                    charCounter.classList.remove('warning', 'error');
+                    showThankYouScreen(data);
                 } else {
                     const errorResponse = await response.json();
                     console.error('API Error Response:', errorResponse);
@@ -620,6 +865,90 @@
                     statusMessage.innerHTML = '';
                 }, 5000);
             }
+        }
+
+        function showThankYouScreen(data) {
+            const thankYouScreen = document.getElementById('thankYouScreen');
+            const thankYouDetails = document.getElementById('thankYouDetails');
+            
+            // Populate thank you details
+            thankYouDetails.innerHTML = `
+                <div class="thank-you-detail">
+                    <span class="detail-label">Player Name:</span>
+                    <span class="detail-value">${data.playerName}</span>
+                </div>
+                <div class="thank-you-detail">
+                    <span class="detail-label">Rating:</span>
+                    <span class="detail-value">${'⭐'.repeat(data.rating)} (${data.rating}/5)</span>
+                </div>
+                <div class="thank-you-detail">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">${data.email}</span>
+                </div>
+                <div class="thank-you-detail">
+                    <span class="detail-label">Submitted:</span>
+                    <span class="detail-value">${new Date().toLocaleString()}</span>
+                </div>
+            `;
+            
+            // Show thank you screen
+            thankYouScreen.style.display = 'flex';
+            setTimeout(() => {
+                thankYouScreen.classList.add('show');
+            }, 100);
+            
+            // Create floating particles
+            createFloatingParticles();
+        }
+
+        function createFloatingParticles() {
+            const particles = document.getElementById('particles');
+            const particleEmojis = ['⭐', '🌟', '✨', '💫', '🎊', '🎉'];
+            
+            // Clear existing particles
+            particles.innerHTML = '';
+            
+            // Create particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.textContent = particleEmojis[Math.floor(Math.random() * particleEmojis.length)];
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    particles.appendChild(particle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 7000);
+                }, i * 300);
+            }
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        function submitAnother() {
+            const thankYouScreen = document.getElementById('thankYouScreen');
+            thankYouScreen.classList.remove('show');
+            setTimeout(() => {
+                thankYouScreen.style.display = 'none';
+                // Reset form
+                form.reset();
+                selectedRating = 0;
+                updateStarDisplay();
+                ratingText.textContent = ratingTexts[0];
+                charCounter.textContent = '0/500 characters';
+                charCounter.classList.remove('warning', 'error');
+                statusMessage.innerHTML = '';
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 600);
         }
     </script>
 </body>
