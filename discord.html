@@ -196,16 +196,14 @@
             overflow: hidden;
         }
 
-        .server-banner {
+        .server-header {
             width: 100%;
-            height: 200px;
             background: linear-gradient(135deg, var(--discord), var(--discord-dark));
-            background-size: cover;
-            background-position: center;
             position: relative;
             display: flex;
-            align-items: flex-end;
-            padding: 2rem;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
         }
 
         .server-icon-container {
@@ -455,9 +453,8 @@
                 font-size: 2rem;
             }
 
-            .server-banner {
-                height: 150px;
-                padding: 1.5rem;
+            .server-header {
+                padding: 2rem 1.5rem;
             }
 
             .server-icon {
@@ -514,7 +511,7 @@
 
         <!-- Server Info Container -->
         <div id="serverContainer" class="server-container" style="display: none;">
-            <div id="serverBanner" class="server-banner">
+            <div class="server-header">
                 <div class="server-icon-container">
                     <img id="serverIcon" class="server-icon" alt="Server Icon">
                 </div>
@@ -652,12 +649,6 @@
                 serverIcon.style.display = 'block';
             } else {
                 serverIcon.style.display = 'none';
-            }
-
-            // Server banner
-            const serverBanner = document.getElementById('serverBanner');
-            if (serverInfo.server_banner_url) {
-                serverBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('${serverInfo.server_banner_url}')`;
             }
 
             // Update page meta with server info
