@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RG2K25 Elite Battle Royale - Discord Server</title>
+    
+    <!-- Meta Tags for Social Preview -->
+    <meta name="description" content="Join the RG2K25 Elite Battle Royale Discord community! Connect with fellow warriors, get updates, and dominate the battlefield together.">
+    <meta name="keywords" content="RG2K25, Discord, Gaming, Battle Royale, Minecraft, Community">
+    <meta name="author" content="RG2K25 Elite Battle Royale">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rg2k25.mcboss.top/discord">
+    <meta property="og:title" content="RG2K25 Discord Community - Join the Elite Warriors">
+    <meta property="og:description" content="Connect with the RG2K25 community on Discord. Join thousands of elite warriors in the ultimate battle royale experience!">
+    <meta property="og:image" content="https://api.mcsrvstat.us/icon/rg2k25.mcboss.top">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rg2k25.mcboss.top/discord">
+    <meta property="twitter:title" content="RG2K25 Discord Community - Join the Elite Warriors">
+    <meta property="twitter:description" content="Connect with the RG2K25 community on Discord. Join thousands of elite warriors in the ultimate battle royale experience!">
+    <meta property="twitter:image" content="https://api.mcsrvstat.us/icon/rg2k25.mcboss.top">
+    
+    <link rel="icon" href="https://api.mcsrvstat.us/icon/rg2k25.mcboss.top" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FFD700;
+            --secondary: #FFA500;
+            --accent: #FF6B35;
+            --discord: #5865F2;
+            --discord-dark: #4752C4;
+            --bg-dark: #0B0B0F;
+            --bg-darker: #050507;
+            --bg-card: #111118;
+            --text-light: #E8E8E8;
+            --text-dim: #A0A0A0;
+            --success: #4CAF50;
+            --error: #f44336;
+            --online: #23A55A;
+            --idle: #F0B132;
+            --dnd: #F23F43;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.4;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(88, 101, 242, 0.05) 0%, transparent 50%);
+            animation: bgShift 15s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(11, 11, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 53, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 53, 0.2));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--discord), var(--primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(88, 101, 242, 0.3);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+        }
+
+        /* Loading Animation */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(88, 101, 242, 0.2);
+            border-top: 4px solid var(--discord);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        /* Server Info Container */
+        .server-container {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.05), rgba(255, 215, 0, 0.05));
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            border-radius: 25px;
+            padding: 0;
+            backdrop-filter: blur(10px);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .server-banner {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--discord), var(--discord-dark));
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .server-icon-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .server-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--bg-dark);
+            background: var(--bg-card);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .server-main-info {
+            padding: 2rem 3rem 3rem;
+        }
+
+        .server-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .server-description {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Server Stats */
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--discord);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+
+        .online-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .online-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--online);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(35, 165, 90, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Server Features */
+        .server-features {
+            margin-bottom: 2rem;
+        }
+
+        .features-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(88, 101, 242, 0.2));
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Join Button */
+        .join-discord-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--discord), var(--discord-dark));
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .join-discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+            background: linear-gradient(135deg, var(--discord-dark), var(--discord));
+        }
+
+        .discord-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Error State */
+        .error-container {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(255, 107, 53, 0.1));
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .error-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--error);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .retry-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 25px;
+            color: var(--bg-dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Server Info Details */
+        .server-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--bg-darker);
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .server-main-info {
+                padding: 2rem 1.5rem 2rem;
+            }
+
+            .server-name {
+                font-size: 2rem;
+            }
+
+            .server-banner {
+                height: 150px;
+                padding: 1.5rem;
+            }
+
+            .server-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .server-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .main-content {
+                padding-top: 10rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav>
+        <div class="nav-content">
+            <div class="logo">RG2K25</div>
+            <a href="/" class="home-btn">
+                <i>🏠</i>
+                Home
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">Discord Community</h1>
+        <p class="page-subtitle">Join the elite warriors in our Discord server!</p>
+        
+        <!-- Loading State -->
+        <div id="loadingContainer" class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Connecting to Discord...</div>
+            <p style="color: var(--text-dim); font-size: 0.9rem;">Fetching server information</p>
+        </div>
+
+        <!-- Server Info Container -->
+        <div id="serverContainer" class="server-container" style="display: none;">
+            <div id="serverBanner" class="server-banner">
+                <div class="server-icon-container">
+                    <img id="serverIcon" class="server-icon" alt="Server Icon">
+                </div>
+            </div>
+            
+            <div class="server-main-info">
+                <h2 id="serverName" class="server-name">Loading...</h2>
+                <p id="serverDescription" class="server-description">Loading server description...</p>
+                
+                <div class="server-stats">
+                    <div class="stat-card">
+                        <div id="totalMembers" class="stat-number">---</div>
+                        <div class="stat-label">Total Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">
+                            <div class="online-indicator">
+                                <span class="online-dot"></span>
+                                <span id="onlineMembers">---</span>
+                            </div>
+                        </div>
+                        <div class="stat-label">Online Now</div>
+                    </div>
+                </div>
+
+                <div id="serverFeaturesContainer" class="server-features" style="display: none;">
+                    <h3 class="features-title">Server Features</h3>
+                    <div id="featuresList" class="features-list"></div>
+                </div>
+
+                <div class="server-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Server ID</div>
+                        <div id="serverId" class="detail-value">Loading...</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Created Date</div>
+                        <div id="createdDate" class="detail-value">Loading...</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Verification Level</div>
+                        <div id="verificationLevel" class="detail-value">Loading...</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <a href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
+                        <span class="discord-icon">💬</span>
+                        Join Our Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorContainer" class="error-container" style="display: none;">
+            <h2 class="error-title">Connection Failed</h2>
+            <p class="error-message">Unable to fetch Discord server information. Please try again later.</p>
+            <button class="retry-btn" onclick="loadServerInfo()">Retry Connection</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 RG2K25 Elite Battle Royale. Dominate or be dominated.<br>Not affiliated with Mojang Studios or Microsoft.</p>
+    </footer>
+
+    <script>
+        const API_KEY = 'iNjgvg9o0np4R9ztoX6GhdYn3Z9XIW2A';
+        const API_URL = `https://dms-api.mcboss.top/api/${API_KEY}/server-info`;
+
+        // Verification level mappings
+        const verificationLevels = {
+            0: 'None',
+            1: 'Low',
+            2: 'Medium',
+            3: 'High',
+            4: 'Highest'
+        };
+
+        // Feature display names
+        const featureNames = {
+            'COMMUNITY': 'Community Server',
+            'VERIFIED': 'Verified',
+            'PARTNERED': 'Discord Partner',
+            'DISCOVERABLE': 'Server Discovery',
+            'FEATURABLE': 'Featurable',
+            'INVITES_DISABLED': 'Invites Disabled',
+            'INVITE_SPLASH': 'Invite Splash',
+            'BANNER': 'Server Banner',
+            'VANITY_URL': 'Vanity URL',
+            'ANIMATED_ICON': 'Animated Icon',
+            'WELCOME_SCREEN_ENABLED': 'Welcome Screen',
+            'MEMBER_VERIFICATION_GATE_ENABLED': 'Member Screening',
+            'PREVIEW_ENABLED': 'Server Preview'
+        };
+
+        async function loadServerInfo() {
+            const loadingContainer = document.getElementById('loadingContainer');
+            const serverContainer = document.getElementById('serverContainer');
+            const errorContainer = document.getElementById('errorContainer');
+
+            // Show loading state
+            loadingContainer.style.display = 'flex';
+            serverContainer.style.display = 'none';
+            errorContainer.style.display = 'none';
+
+            try {
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.status !== 'success' || !data.server_info) {
+                    throw new Error('Invalid API response format');
+                }
+
+                populateServerInfo(data.server_info);
+                
+                // Hide loading and show server info
+                loadingContainer.style.display = 'none';
+                serverContainer.style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading server info:', error);
+                
+                // Hide loading and show error
+                loadingContainer.style.display = 'none';
+                errorContainer.style.display = 'block';
+            }
+        }
+
+        function populateServerInfo(serverInfo) {
+            // Basic server info
+            document.getElementById('serverName').textContent = serverInfo.server_name || 'Unknown Server';
+            document.getElementById('serverDescription').textContent = serverInfo.server_description || 'No description available';
+            
+            // Member counts
+            document.getElementById('totalMembers').textContent = formatNumber(serverInfo.server_member_count || 0);
+            document.getElementById('onlineMembers').textContent = formatNumber(serverInfo.server_online_member_count || 0);
+            
+            // Server details
+            document.getElementById('serverId').textContent = serverInfo.server_id || 'Unknown';
+            document.getElementById('verificationLevel').textContent = verificationLevels[serverInfo.verification_level] || 'Unknown';
+            
+            // Created date
+            if (serverInfo.created_at) {
+                const createdDate = new Date(parseInt(serverInfo.created_at));
+                document.getElementById('createdDate').textContent = createdDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } else {
+                document.getElementById('createdDate').textContent = 'Unknown';
+            }
+
+            // Server icon
+            const serverIcon = document.getElementById('serverIcon');
+            if (serverInfo.server_icon_url) {
+                serverIcon.src = serverInfo.server_icon_url;
+                serverIcon.style.display = 'block';
+            } else {
+                serverIcon.style.display = 'none';
+            }
+
+            // Server banner
+            const serverBanner = document.getElementById('serverBanner');
+            if (serverInfo.server_banner_url) {
+                serverBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('${serverInfo.server_banner_url}')`;
+            }
+
+            // Server features
+            if (serverInfo.features && serverInfo.features.length > 0) {
+                const featuresContainer = document.getElementById('serverFeaturesContainer');
+                const featuresList = document.getElementById('featuresList');
+                
+                featuresList.innerHTML = '';
+                
+                serverInfo.features.forEach(feature => {
+                    const featureTag = document.createElement('span');
+                    featureTag.className = 'feature-tag';
+                    featureTag.textContent = featureNames[feature] || feature;
+                    featuresList.appendChild(featureTag);
+                });
+                
+                featuresContainer.style.display = 'block';
+            }
+
+            // Update page meta with server info
+            updatePageMeta(serverInfo);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        function updatePageMeta(serverInfo) {
+            // Update title
+            document.title = `${serverInfo.server_name} - RG2K25 Discord Community`;
+            
+            // Update meta description
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription && serverInfo.server_description) {
+                metaDescription.content = `Join ${serverInfo.server_name} on Discord! ${serverInfo.server_description} ${formatNumber(serverInfo.server_member_count)} members strong!`;
+            }
+
+            // Update Open Graph tags
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDescription = document.querySelector('meta[property="og:description"]');
+            const ogImage = document.querySelector('meta[property="og:image"]');
+
+            if (ogTitle) {
+                ogTitle.content = `${serverInfo.server_name} - Join Our Discord Community`;
+            }
+            
+            if (ogDescription && serverInfo.server_description) {
+                ogDescription.content = `${serverInfo.server_description} Join ${formatNumber(serverInfo.server_member_count)} members in our amazing Discord community!`;
+            }
+            
+            if (ogImage && serverInfo.server_icon_url) {
+                ogImage.content = serverInfo.server_icon_url;
+            }
+
+            // Update Twitter tags
+            const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+            const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+            const twitterImage = document.querySelector('meta[property="twitter:image"]');
+
+            if (twitterTitle) {
+                twitterTitle.content = `${serverInfo.server_name} - Join Our Discord Community`;
+            }
+            
+            if (twitterDescription && serverInfo.server_description) {
+                twitterDescription.content = `${serverInfo.server_description} Join ${formatNumber(serverInfo.server_member_count)} members in our amazing Discord community!`;
+            }
+            
+            if (twitterImage && serverInfo.server_icon_url) {
+                twitterImage.content = serverInfo.server_icon_url;
+            }
+        }
+
+        // Load server info when page loads
+        document.addEventListener('DOMContentLoaded', loadServerInfo);
+    </script>
+</body>
+</html>
