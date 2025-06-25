@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RG2K25 Elite Battle Royale - Discord Server</title>
+    <title>RG2K25 Elite Battle Royale - Discord Community</title>
     
     <!-- Meta Tags for Social Preview -->
     <meta name="description" content="Join the RG2K25 Elite Battle Royale Discord community! Connect with fellow warriors, get updates, and dominate the battlefield together.">
@@ -47,8 +47,6 @@
             --success: #4CAF50;
             --error: #f44336;
             --online: #23A55A;
-            --idle: #F0B132;
-            --dnd: #F23F43;
         }
 
         body {
@@ -132,7 +130,7 @@
         /* Main Content */
         .main-content {
             padding: 8rem 2rem 4rem;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -153,7 +151,7 @@
             text-align: center;
             font-size: 1.3rem;
             color: var(--text-dim);
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         /* Loading Animation */
@@ -235,13 +233,15 @@
             color: var(--text-light);
             margin-bottom: 1rem;
             text-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+            text-align: center;
         }
 
         .server-description {
             font-size: 1.2rem;
             color: var(--text-dim);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             line-height: 1.6;
+            text-align: center;
         }
 
         /* Server Stats */
@@ -249,7 +249,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .stat-card {
@@ -301,37 +301,6 @@
             50% { opacity: 0.6; }
         }
 
-        /* Server Features */
-        .server-features {
-            margin-bottom: 2rem;
-        }
-
-        .features-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .features-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .feature-tag {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(88, 101, 242, 0.2));
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         /* Join Button */
         .join-discord-btn {
             display: flex;
@@ -364,6 +333,62 @@
 
         .discord-icon {
             font-size: 1.5rem;
+        }
+
+        /* Community Benefits Section */
+        .community-benefits {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 107, 53, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .benefits-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: var(--text-dim);
+            line-height: 1.5;
         }
 
         /* Error State */
@@ -406,35 +431,6 @@
         .retry-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Server Info Details */
-        .server-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .detail-item {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-
-        .detail-label {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .detail-value {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            font-weight: 600;
         }
 
         .footer {
@@ -480,6 +476,14 @@
 
             .main-content {
                 padding-top: 10rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .community-benefits {
+                padding: 2rem;
             }
         }
     </style>
@@ -536,31 +540,38 @@
                     </div>
                 </div>
 
-                <div id="serverFeaturesContainer" class="server-features" style="display: none;">
-                    <h3 class="features-title">Server Features</h3>
-                    <div id="featuresList" class="features-list"></div>
-                </div>
-
-                <div class="server-details">
-                    <div class="detail-item">
-                        <div class="detail-label">Server ID</div>
-                        <div id="serverId" class="detail-value">Loading...</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Created Date</div>
-                        <div id="createdDate" class="detail-value">Loading...</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Verification Level</div>
-                        <div id="verificationLevel" class="detail-value">Loading...</div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 3rem;">
+                <div style="margin-top: 2rem;">
                     <a href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
                         <span class="discord-icon">💬</span>
                         Join Our Discord
                     </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Benefits Section -->
+        <div class="community-benefits">
+            <h2 class="benefits-title">Why Join Our Discord?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚔️</div>
+                    <h3 class="benefit-title">Battle Updates</h3>
+                    <p class="benefit-description">Get instant notifications about new battles, events, and tournament announcements</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏆</div>
+                    <h3 class="benefit-title">Elite Community</h3>
+                    <p class="benefit-description">Connect with fellow warriors, share strategies, and form alliances</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎮</div>
+                    <h3 class="benefit-title">Game Support</h3>
+                    <p class="benefit-description">Get help from our moderators and experienced players</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎁</div>
+                    <h3 class="benefit-title">Exclusive Rewards</h3>
+                    <p class="benefit-description">Access to Discord-only giveaways and special events</p>
                 </div>
             </div>
         </div>
@@ -570,6 +581,12 @@
             <h2 class="error-title">Connection Failed</h2>
             <p class="error-message">Unable to fetch Discord server information. Please try again later.</p>
             <button class="retry-btn" onclick="loadServerInfo()">Retry Connection</button>
+            <div style="margin-top: 2rem;">
+                <a href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
+                    <span class="discord-icon">💬</span>
+                    Join Discord Anyway
+                </a>
+            </div>
         </div>
     </main>
 
@@ -580,32 +597,6 @@
     <script>
         const API_KEY = 'iNjgvg9o0np4R9ztoX6GhdYn3Z9XIW2A';
         const API_URL = `https://dms-api.mcboss.top/api/${API_KEY}/server-info`;
-
-        // Verification level mappings
-        const verificationLevels = {
-            0: 'None',
-            1: 'Low',
-            2: 'Medium',
-            3: 'High',
-            4: 'Highest'
-        };
-
-        // Feature display names
-        const featureNames = {
-            'COMMUNITY': 'Community Server',
-            'VERIFIED': 'Verified',
-            'PARTNERED': 'Discord Partner',
-            'DISCOVERABLE': 'Server Discovery',
-            'FEATURABLE': 'Featurable',
-            'INVITES_DISABLED': 'Invites Disabled',
-            'INVITE_SPLASH': 'Invite Splash',
-            'BANNER': 'Server Banner',
-            'VANITY_URL': 'Vanity URL',
-            'ANIMATED_ICON': 'Animated Icon',
-            'WELCOME_SCREEN_ENABLED': 'Welcome Screen',
-            'MEMBER_VERIFICATION_GATE_ENABLED': 'Member Screening',
-            'PREVIEW_ENABLED': 'Server Preview'
-        };
 
         async function loadServerInfo() {
             const loadingContainer = document.getElementById('loadingContainer');
@@ -647,28 +638,12 @@
 
         function populateServerInfo(serverInfo) {
             // Basic server info
-            document.getElementById('serverName').textContent = serverInfo.server_name || 'Unknown Server';
-            document.getElementById('serverDescription').textContent = serverInfo.server_description || 'No description available';
+            document.getElementById('serverName').textContent = serverInfo.server_name || 'RG2K25 Discord';
+            document.getElementById('serverDescription').textContent = serverInfo.server_description || 'Join our amazing Discord community and connect with fellow elite warriors!';
             
             // Member counts
             document.getElementById('totalMembers').textContent = formatNumber(serverInfo.server_member_count || 0);
             document.getElementById('onlineMembers').textContent = formatNumber(serverInfo.server_online_member_count || 0);
-            
-            // Server details
-            document.getElementById('serverId').textContent = serverInfo.server_id || 'Unknown';
-            document.getElementById('verificationLevel').textContent = verificationLevels[serverInfo.verification_level] || 'Unknown';
-            
-            // Created date
-            if (serverInfo.created_at) {
-                const createdDate = new Date(parseInt(serverInfo.created_at));
-                document.getElementById('createdDate').textContent = createdDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } else {
-                document.getElementById('createdDate').textContent = 'Unknown';
-            }
 
             // Server icon
             const serverIcon = document.getElementById('serverIcon');
@@ -683,23 +658,6 @@
             const serverBanner = document.getElementById('serverBanner');
             if (serverInfo.server_banner_url) {
                 serverBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('${serverInfo.server_banner_url}')`;
-            }
-
-            // Server features
-            if (serverInfo.features && serverInfo.features.length > 0) {
-                const featuresContainer = document.getElementById('serverFeaturesContainer');
-                const featuresList = document.getElementById('featuresList');
-                
-                featuresList.innerHTML = '';
-                
-                serverInfo.features.forEach(feature => {
-                    const featureTag = document.createElement('span');
-                    featureTag.className = 'feature-tag';
-                    featureTag.textContent = featureNames[feature] || feature;
-                    featuresList.appendChild(featureTag);
-                });
-                
-                featuresContainer.style.display = 'block';
             }
 
             // Update page meta with server info
@@ -717,46 +675,12 @@
 
         function updatePageMeta(serverInfo) {
             // Update title
-            document.title = `${serverInfo.server_name} - RG2K25 Discord Community`;
+            document.title = `${serverInfo.server_name || 'RG2K25'} - Discord Community`;
             
             // Update meta description
             const metaDescription = document.querySelector('meta[name="description"]');
             if (metaDescription && serverInfo.server_description) {
                 metaDescription.content = `Join ${serverInfo.server_name} on Discord! ${serverInfo.server_description} ${formatNumber(serverInfo.server_member_count)} members strong!`;
-            }
-
-            // Update Open Graph tags
-            const ogTitle = document.querySelector('meta[property="og:title"]');
-            const ogDescription = document.querySelector('meta[property="og:description"]');
-            const ogImage = document.querySelector('meta[property="og:image"]');
-
-            if (ogTitle) {
-                ogTitle.content = `${serverInfo.server_name} - Join Our Discord Community`;
-            }
-            
-            if (ogDescription && serverInfo.server_description) {
-                ogDescription.content = `${serverInfo.server_description} Join ${formatNumber(serverInfo.server_member_count)} members in our amazing Discord community!`;
-            }
-            
-            if (ogImage && serverInfo.server_icon_url) {
-                ogImage.content = serverInfo.server_icon_url;
-            }
-
-            // Update Twitter tags
-            const twitterTitle = document.querySelector('meta[property="twitter:title"]');
-            const twitterDescription = document.querySelector('meta[property="twitter:description"]');
-            const twitterImage = document.querySelector('meta[property="twitter:image"]');
-
-            if (twitterTitle) {
-                twitterTitle.content = `${serverInfo.server_name} - Join Our Discord Community`;
-            }
-            
-            if (twitterDescription && serverInfo.server_description) {
-                twitterDescription.content = `${serverInfo.server_description} Join ${formatNumber(serverInfo.server_member_count)} members in our amazing Discord community!`;
-            }
-            
-            if (twitterImage && serverInfo.server_icon_url) {
-                twitterImage.content = serverInfo.server_icon_url;
             }
         }
 
