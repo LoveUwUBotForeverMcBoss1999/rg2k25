@@ -538,7 +538,7 @@
                 </div>
 
                 <div style="margin-top: 2rem;">
-                    <a href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
+                    <a id="joinDiscordBtn" href="#" class="join-discord-btn" target="_blank">
                         <span class="discord-icon">💬</span>
                         Join Our Discord
                     </a>
@@ -579,7 +579,7 @@
             <p class="error-message">Unable to fetch Discord server information. Please try again later.</p>
             <button class="retry-btn" onclick="loadServerInfo()">Retry Connection</button>
             <div style="margin-top: 2rem;">
-                <a href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
+                <a id="fallbackDiscordBtn" href="https://discord.gg/cQQybxV8xW" class="join-discord-btn" target="_blank">
                     <span class="discord-icon">💬</span>
                     Join Discord Anyway
                 </a>
@@ -594,6 +594,9 @@
     <script>
         const API_KEY = 'iNjgvg9o0np4R9ztoX6GhdYn3Z9XIW2A';
         const API_URL = `https://dms-api.mcboss.top/api/${API_KEY}/server-info`;
+        const FALLBACK_INVITE = 'https://discord.gg/cQQybxV8xW'; // Fallback invite link
+        
+        let currentInviteLink = FALLBACK_INVITE;
 
         async function loadServerInfo() {
             const loadingContainer = document.getElementById('loadingContainer');
@@ -650,6 +653,27 @@
             } else {
                 serverIcon.style.display = 'none';
             }
+
+            // Update Discord invite link - PRIORITY: Use generated invite from API
+            const joinDiscordBtn = document.getElementById('joinDiscordBtn');
+            if (serverInfo.generated_invite && serverInfo.generated_invite.url) {
+                currentInviteLink = serverInfo.generated_invite.url;
+                joinDiscordBtn.href = currentInviteLink;
+                console.log('Using generated invite from API:', currentInviteLink);
+            } else if (serverInfo.invite_links && serverInfo.invite_links.length > 0) {
+                // Fallback to first available invite link
+                currentInviteLink = `https://discord.gg/${serverInfo.invite_links[0].code}`;
+                joinDiscordBtn.href = currentInviteLink;
+                console.log('Using first available invite:', currentInviteLink);
+            } else {
+                // Use fallback invite
+                joinDiscordBtn.href = FALLBACK_INVITE;
+                console.log('Using fallback invite:', FALLBACK_INVITE);
+            }
+
+            // Update fallback button in error state too
+            const fallbackBtn = document.getElementById('fallbackDiscordBtn');
+            fallbackBtn.href = currentInviteLink;
 
             // Update page meta with server info
             updatePageMeta(serverInfo);
