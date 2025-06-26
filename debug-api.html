@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord API Debugger</title>
+    <title>DMS API Debugger</title>
     <style>
         * {
             margin: 0;
@@ -22,162 +22,200 @@
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            overflow: hidden;
         }
 
         .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
         }
 
         .header h1 {
-            color: #333;
             font-size: 2.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .section {
-            background: white;
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .config-section {
+            background: #f8f9fa;
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             border-left: 5px solid #667eea;
         }
 
-        .section h2 {
+        .config-section h3 {
             color: #333;
             margin-bottom: 20px;
-            font-size: 1.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .form-group {
+        .input-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
+        .input-group label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
             font-weight: 600;
+            color: #555;
         }
 
-        .form-group input,
-        .form-group textarea {
+        .input-group input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e1e5e9;
             border-radius: 10px;
             font-size: 16px;
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .input-group input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
+        .tabs {
+            display: flex;
+            background: #f1f3f4;
+            border-radius: 15px;
+            padding: 5px;
+            margin-bottom: 30px;
+            gap: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #f1f3f4;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .method-post {
+            background: #28a745;
+            color: white;
+        }
+
+        .method-get {
+            background: #007bff;
+            color: white;
         }
 
         .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
+            padding: 12px 30px;
+            border-radius: 25px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            margin-top: 15px;
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         .btn:active {
             transform: translateY(0);
         }
 
-        .btn-secondary {
-            background: linear-gradient(45deg, #6c757d, #5a6268);
-        }
-
-        .btn-danger {
-            background: linear-gradient(45deg, #dc3545, #c82333);
-        }
-
-        .btn-success {
-            background: linear-gradient(45deg, #28a745, #218838);
-        }
-
-        .response {
+        .response-section {
+            margin-top: 30px;
+            padding: 25px;
             background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
+            border-radius: 15px;
+            border-left: 5px solid #28a745;
+        }
+
+        .response-section.error {
+            border-left-color: #dc3545;
+        }
+
+        .response-section h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .response-code {
+            background: #2d3748;
+            color: #e2e8f0;
             padding: 20px;
-            margin-top: 20px;
+            border-radius: 10px;
             font-family: 'Courier New', monospace;
+            font-size: 14px;
             white-space: pre-wrap;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .response.success {
-            background: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
-        }
-
-        .response.error {
-            background: #f8d7da;
-            border-color: #f5c6cb;
-            color: #721c24;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-
-        .status-indicator.success {
-            background: #28a745;
-        }
-
-        .status-indicator.error {
-            background: #dc3545;
-        }
-
-        .status-indicator.warning {
-            background: #ffc107;
+            overflow-x: auto;
+            line-height: 1.5;
         }
 
         .loading {
             display: none;
             text-align: center;
             padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
         }
 
         .spinner {
@@ -187,7 +225,7 @@
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -195,10 +233,49 @@
             100% { transform: rotate(360deg); }
         }
 
+        .url-preview {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            border-left: 4px solid #007bff;
+        }
+
+        .textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .optional-tag {
+            background: #ffc107;
+            color: #212529;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
@@ -206,617 +283,338 @@
                 grid-template-columns: 1fr;
             }
             
-            .container {
-                padding: 20px;
+            .tabs {
+                flex-direction: column;
             }
             
             .header h1 {
                 font-size: 2rem;
             }
         }
-
-        .endpoint-info {
-            background: #e3f2fd;
-            border: 1px solid #bbdefb;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .endpoint-info code {
-            background: #333;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🛠️ Discord API Debugger</h1>
-            <p>Complete testing suite for your Discord API endpoints</p>
+            <h1>🔧 DMS API Debugger</h1>
+            <p>Test and debug your DMS API endpoints with ease</p>
         </div>
 
-        <!-- API Key Configuration -->
-        <div class="section">
-            <h2>🔑 API Key Configuration</h2>
-            <div class="form-group">
-                <label for="apiKey">API Key:</label>
-                <input type="text" id="apiKey" placeholder="Enter your API key here">
-            </div>
-            <div class="form-group">
-                <label for="baseUrl">Base URL:</label>
-                <input type="text" id="baseUrl" value="http://localhost:5000" placeholder="http://localhost:5000">
-            </div>
-        </div>
-
-        <div class="grid">
-            <!-- Left Column -->
-            <div>
-                <!-- Validation Test -->
-                <div class="section">
-                    <h2>✅ Validation Test</h2>
-                    <div class="endpoint-info">
-                        <strong>Endpoint:</strong> <code>GET /validate/{key}</code><br>
-                        <strong>Purpose:</strong> Check if your current origin is authorized for this key
-                    </div>
-                    <button class="btn" onclick="testValidation()">Test Validation</button>
-                    <div class="loading" id="validateLoading">
-                        <div class="spinner"></div>
-                        <p>Validating...</p>
-                    </div>
-                    <div class="response" id="validateResponse"></div>
-                </div>
-
-                <!-- Key Info Test -->
-                <div class="section">
-                    <h2>📋 Key Information</h2>
-                    <div class="endpoint-info">
-                        <strong>Endpoint:</strong> <code>GET /keys/{key}/info</code><br>
-                        <strong>Purpose:</strong> Get detailed information about your API key
-                    </div>
-                    <button class="btn" onclick="testKeyInfo()">Get Key Info</button>
-                    <div class="loading" id="keyInfoLoading">
-                        <div class="spinner"></div>
-                        <p>Fetching key info...</p>
-                    </div>
-                    <div class="response" id="keyInfoResponse"></div>
-                </div>
-
-                <!-- Bot Invite -->
-                <div class="section">
-                    <h2>🤖 Bot Invite Link</h2>
-                    <div class="endpoint-info">
-                        <strong>Endpoint:</strong> <code>GET /invite-link</code><br>
-                        <strong>Purpose:</strong> Get Discord bot invite link
-                    </div>
-                    <button class="btn" onclick="getBotInvite()">Get Bot Invite</button>
-                    <div class="loading" id="inviteLoading">
-                        <div class="spinner"></div>
-                        <p>Getting invite link...</p>
-                    </div>
-                    <div class="response" id="inviteResponse"></div>
+        <div class="content">
+            <!-- Configuration Section -->
+            <div class="config-section">
+                <h3>⚙️ Configuration</h3>
+                <div class="input-group">
+                    <label for="apiKey">API Key *</label>
+                    <input type="text" id="apiKey" placeholder="Enter your API key">
                 </div>
             </div>
 
-            <!-- Right Column -->
-            <div>
-                <!-- Message Sending (POST) -->
-                <div class="section">
-                    <h2>📤 Send Message (POST)</h2>
-                    <div class="endpoint-info">
-                        <strong>Endpoint:</strong> <code>POST /api/{key}/send</code><br>
-                        <strong>Purpose:</strong> Send message to Discord channel
-                    </div>
-                    <div class="form-group">
-                        <label for="postEmail">Email:</label>
+            <!-- API Endpoints Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('post-send')">POST /send</button>
+                <button class="tab" onclick="switchTab('get-basic')">GET Basic</button>
+                <button class="tab" onclick="switchTab('get-discord')">GET with Discord</button>
+                <button class="tab" onclick="switchTab('validation')">Validation</button>
+            </div>
+
+            <!-- POST Send Tab -->
+            <div id="post-send" class="tab-content active">
+                <div class="method-badge method-post">POST</div>
+                <h3>POST /api/{key}/send</h3>
+                <p style="margin-bottom: 20px; color: #666;">Recommended method for longer messages and better security</p>
+                
+                <div class="grid">
+                    <div class="input-group">
+                        <label for="postEmail">Email *</label>
                         <input type="email" id="postEmail" placeholder="user@example.com">
                     </div>
-                    <div class="form-group">
-                        <label for="postMessage">Message:</label>
-                        <textarea id="postMessage" placeholder="Enter your message here...">Hello! This is a test message from the API debugger. 
-
-Testing multiple lines and formatting:
-- Line 1
-- Line 2
-- Line 3
-
-End of test message.</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="postDiscordId">Discord ID (optional):</label>
+                    <div class="input-group">
+                        <label for="postDiscordId">Discord ID <span class="optional-tag">OPTIONAL</span></label>
                         <input type="text" id="postDiscordId" placeholder="123456789012345678">
                     </div>
-                    <button class="btn" onclick="sendMessagePost()">Send Message (POST)</button>
-                    <div class="loading" id="postLoading">
-                        <div class="spinner"></div>
-                        <p>Sending message...</p>
-                    </div>
-                    <div class="response" id="postResponse"></div>
                 </div>
+                
+                <div class="input-group">
+                    <label for="postMessage">Message *</label>
+                    <textarea class="textarea" id="postMessage" placeholder="Enter your message here..."></textarea>
+                </div>
+                
+                <button class="btn" onclick="testPostSend()">🚀 Send POST Request</button>
+            </div>
 
-                <!-- Message Sending (GET) -->
-                <div class="section">
-                    <h2>📤 Send Message (GET)</h2>
-                    <div class="endpoint-info">
-                        <strong>Endpoint:</strong> <code>GET /api/{key}/email-{email}/message-{message}/id-{discord_id}</code><br>
-                        <strong>Purpose:</strong> Send message via GET request (URL parameters)
+            <!-- GET Basic Tab -->
+            <div id="get-basic" class="tab-content">
+                <div class="method-badge method-get">GET</div>
+                <h3>GET /api/{key}/email-{email}/message-{message}</h3>
+                <p style="margin-bottom: 20px; color: #666;">Simple GET method for basic implementations</p>
+                
+                <div class="grid">
+                    <div class="input-group">
+                        <label for="getEmail">Email *</label>
+                        <input type="email" id="getEmail" placeholder="john@example.com">
                     </div>
-                    <div class="form-group">
-                        <label for="getEmail">Email:</label>
-                        <input type="email" id="getEmail" placeholder="user@example.com">
+                    <div class="input-group">
+                        <label for="getMessage">Message *</label>
+                        <input type="text" id="getMessage" placeholder="Need help with my order">
                     </div>
-                    <div class="form-group">
-                        <label for="getMessage">Message:</label>
-                        <textarea id="getMessage" placeholder="Enter your message here...">Hello from GET endpoint! This is a test message.</textarea>
+                </div>
+                
+                <div class="url-preview" id="getBasicUrl">
+                    URL will be generated here...
+                </div>
+                
+                <button class="btn" onclick="testGetBasic()">🚀 Send GET Request</button>
+            </div>
+
+            <!-- GET with Discord Tab -->
+            <div id="get-discord" class="tab-content">
+                <div class="method-badge method-get">GET</div>
+                <h3>GET /api/{key}/email-{email}/message-{message}/id-{discord-id}</h3>
+                <p style="margin-bottom: 20px; color: #666;">Enhanced GET method with Discord user identification</p>
+                
+                <div class="grid">
+                    <div class="input-group">
+                        <label for="getDiscordEmail">Email *</label>
+                        <input type="email" id="getDiscordEmail" placeholder="john@example.com">
                     </div>
-                    <div class="form-group">
-                        <label for="getDiscordId">Discord ID:</label>
+                    <div class="input-group">
+                        <label for="getDiscordId">Discord ID *</label>
                         <input type="text" id="getDiscordId" placeholder="123456789012345678">
                     </div>
-                    <button class="btn" onclick="sendMessageGet()">Send Message (GET)</button>
-                    <div class="loading" id="getLoading">
-                        <div class="spinner"></div>
-                        <p>Sending message...</p>
-                    </div>
-                    <div class="response" id="getResponse"></div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="getDiscordMessage">Message *</label>
+                    <input type="text" id="getDiscordMessage" placeholder="Need help">
+                </div>
+                
+                <div class="url-preview" id="getDiscordUrl">
+                    URL will be generated here...
+                </div>
+                
+                <button class="btn" onclick="testGetDiscord()">🚀 Send GET Request</button>
+            </div>
+
+            <!-- Validation Tab -->
+            <div id="validation" class="tab-content">
+                <div class="method-badge method-get">GET</div>
+                <h3>Validation Endpoints</h3>
+                <p style="margin-bottom: 20px; color: #666;">Check API key validation and configuration</p>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button class="btn" onclick="testValidation()">🔍 Validate Key</button>
+                    <button class="btn" onclick="testKeyInfo()">ℹ️ Key Info</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Complete Test Suite -->
-        <div class="section">
-            <h2>🧪 Complete Test Suite</h2>
-            <p>Run all tests in sequence to check complete functionality:</p>
-            <button class="btn btn-success" onclick="runCompleteTest()">🚀 Run All Tests</button>
-            <button class="btn btn-secondary" onclick="clearAllResponses()">🗑️ Clear All Results</button>
-            <div class="loading" id="completeTestLoading">
+            <!-- Loading Section -->
+            <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Running complete test suite...</p>
+                <p>Making API request...</p>
             </div>
-            <div class="response" id="completeTestResponse"></div>
-        </div>
 
-        <!-- System Info -->
-        <div class="section">
-            <h2>ℹ️ System Information</h2>
-            <div class="response" id="systemInfo">
-Current URL: <span id="currentUrl"></span>
-User Agent: <span id="userAgent"></span>
-Origin: <span id="origin"></span>
-Referer: <span id="referer"></span>
-Timestamp: <span id="timestamp"></span>
+            <!-- Response Section -->
+            <div class="response-section" id="responseSection" style="display: none;">
+                <h4 id="responseTitle">API Response</h4>
+                <pre class="response-code" id="responseCode"></pre>
             </div>
         </div>
     </div>
 
     <script>
-        // Initialize system info
-        document.addEventListener('DOMContentLoaded', function() {
-            updateSystemInfo();
-        });
-
-        function updateSystemInfo() {
-            document.getElementById('currentUrl').textContent = window.location.href;
-            document.getElementById('userAgent').textContent = navigator.userAgent;
-            document.getElementById('origin').textContent = window.location.origin;
-            document.getElementById('referer').textContent = document.referrer || 'None';
-            document.getElementById('timestamp').textContent = new Date().toISOString();
+        const baseUrl = 'https://dms-api.mcboss.top';
+        
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Update URL previews
+            updateUrlPreviews();
         }
-
-        function getBaseUrl() {
-            return document.getElementById('baseUrl').value.trim() || 'http://localhost:5000';
+        
+        function updateUrlPreviews() {
+            const apiKey = document.getElementById('apiKey').value || '{api-key}';
+            
+            // Update GET basic URL
+            const getEmail = document.getElementById('getEmail').value || '{email}';
+            const getMessage = document.getElementById('getMessage').value || '{message}';
+            const basicUrl = `${baseUrl}/api/${apiKey}/email-${encodeURIComponent(getEmail)}/message-${encodeURIComponent(getMessage)}`;
+            document.getElementById('getBasicUrl').textContent = basicUrl;
+            
+            // Update GET Discord URL
+            const getDiscordEmail = document.getElementById('getDiscordEmail').value || '{email}';
+            const getDiscordMessage = document.getElementById('getDiscordMessage').value || '{message}';
+            const getDiscordId = document.getElementById('getDiscordId').value || '{discord-id}';
+            const discordUrl = `${baseUrl}/api/${apiKey}/email-${encodeURIComponent(getDiscordEmail)}/message-${encodeURIComponent(getDiscordMessage)}/id-${getDiscordId}`;
+            document.getElementById('getDiscordUrl').textContent = discordUrl;
         }
-
-        function getApiKey() {
-            const key = document.getElementById('apiKey').value.trim();
-            if (!key) {
-                alert('Please enter an API key first!');
-                return null;
-            }
-            return key;
+        
+        // Update URL previews when inputs change
+        document.addEventListener('input', updateUrlPreviews);
+        
+        function showLoading() {
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('responseSection').style.display = 'none';
         }
-
-        function showLoading(elementId) {
-            document.getElementById(elementId).style.display = 'block';
+        
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('show');
         }
-
-        function hideLoading(elementId) {
-            document.getElementById(elementId).style.display = 'none';
+        
+        function showResponse(title, data, isError = false) {
+            hideLoading();
+            const responseSection = document.getElementById('responseSection');
+            const responseTitle = document.getElementById('responseTitle');
+            const responseCode = document.getElementById('responseCode');
+            
+            responseTitle.textContent = title;
+            responseCode.textContent = JSON.stringify(data, null, 2);
+            responseSection.style.display = 'block';
+            responseSection.className = isError ? 'response-section error' : 'response-section';
+            
+            // Scroll to response
+            responseSection.scrollIntoView({ behavior: 'smooth' });
         }
-
-        function displayResponse(elementId, data, isSuccess = true) {
-            const element = document.getElementById(elementId);
-            element.className = `response ${isSuccess ? 'success' : 'error'}`;
-            element.textContent = JSON.stringify(data, null, 2);
-        }
-
-        async function testValidation() {
-            const apiKey = getApiKey();
-            if (!apiKey) return;
-
-            const baseUrl = getBaseUrl();
-            showLoading('validateLoading');
-
-            try {
-                const response = await fetch(`${baseUrl}/validate/${apiKey}`, {
-                    method: 'GET',
-                    headers: {
-                        'Origin': window.location.origin,
-                        'Referer': window.location.href
-                    }
-                });
-
-                const data = await response.json();
-                displayResponse('validateResponse', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    data: data
-                }, response.ok);
-
-            } catch (error) {
-                displayResponse('validateResponse', {
-                    error: 'Network Error',
-                    message: error.message,
-                    type: 'fetch_error'
-                }, false);
-            } finally {
-                hideLoading('validateLoading');
-            }
-        }
-
-        async function testKeyInfo() {
-            const apiKey = getApiKey();
-            if (!apiKey) return;
-
-            const baseUrl = getBaseUrl();
-            showLoading('keyInfoLoading');
-
-            try {
-                const response = await fetch(`${baseUrl}/keys/${apiKey}/info`, {
-                    method: 'GET',
-                    headers: {
-                        'Origin': window.location.origin,
-                        'Referer': window.location.href
-                    }
-                });
-
-                const data = await response.json();
-                displayResponse('keyInfoResponse', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    data: data
-                }, response.ok);
-
-            } catch (error) {
-                displayResponse('keyInfoResponse', {
-                    error: 'Network Error',
-                    message: error.message,
-                    type: 'fetch_error'
-                }, false);
-            } finally {
-                hideLoading('keyInfoLoading');
-            }
-        }
-
-        async function getBotInvite() {
-            const baseUrl = getBaseUrl();
-            showLoading('inviteLoading');
-
-            try {
-                const response = await fetch(`${baseUrl}/invite-link`, {
-                    method: 'GET'
-                });
-
-                const data = await response.json();
-                displayResponse('inviteResponse', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    data: data
-                }, response.ok);
-
-            } catch (error) {
-                displayResponse('inviteResponse', {
-                    error: 'Network Error',
-                    message: error.message,
-                    type: 'fetch_error'
-                }, false);
-            } finally {
-                hideLoading('inviteLoading');
-            }
-        }
-
-        async function sendMessagePost() {
-            const apiKey = getApiKey();
-            if (!apiKey) return;
-
-            const email = document.getElementById('postEmail').value.trim();
-            const message = document.getElementById('postMessage').value.trim();
-            const discordId = document.getElementById('postDiscordId').value.trim();
-
-            if (!email || !message) {
-                alert('Please enter both email and message!');
+        
+        async function testPostSend() {
+            const apiKey = document.getElementById('apiKey').value;
+            const email = document.getElementById('postEmail').value;
+            const message = document.getElementById('postMessage').value;
+            const discordId = document.getElementById('postDiscordId').value;
+            
+            if (!apiKey || !email || !message) {
+                alert('Please fill in API Key, Email, and Message fields');
                 return;
             }
-
-            const baseUrl = getBaseUrl();
-            showLoading('postLoading');
-
+            
+            showLoading();
+            
+            const payload = {
+                email: email,
+                message: message
+            };
+            
+            if (discordId) {
+                payload.discord_id = discordId;
+            }
+            
             try {
-                const payload = {
-                    email: email,
-                    message: message
-                };
-
-                if (discordId) {
-                    payload.discord_id = discordId;
-                }
-
                 const response = await fetch(`${baseUrl}/api/${apiKey}/send`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Origin': window.location.origin,
-                        'Referer': window.location.href
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(payload)
                 });
-
-                const data = await response.json();
-                displayResponse('postResponse', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    data: data,
-                    request_payload: payload
-                }, response.ok);
-
+                
+                const result = await response.json();
+                showResponse(`POST Response (${response.status})`, result, !response.ok);
             } catch (error) {
-                displayResponse('postResponse', {
-                    error: 'Network Error',
-                    message: error.message,
-                    type: 'fetch_error'
-                }, false);
-            } finally {
-                hideLoading('postLoading');
+                showResponse('POST Error', { error: error.message }, true);
             }
         }
-
-        async function sendMessageGet() {
-            const apiKey = getApiKey();
-            if (!apiKey) return;
-
-            const email = document.getElementById('getEmail').value.trim();
-            const message = document.getElementById('getMessage').value.trim();
-            const discordId = document.getElementById('getDiscordId').value.trim();
-
-            if (!email || !message || !discordId) {
-                alert('Please enter email, message, and Discord ID for GET request!');
+        
+        async function testGetBasic() {
+            const apiKey = document.getElementById('apiKey').value;
+            const email = document.getElementById('getEmail').value;
+            const message = document.getElementById('getMessage').value;
+            
+            if (!apiKey || !email || !message) {
+                alert('Please fill in API Key, Email, and Message fields');
                 return;
             }
-
-            const baseUrl = getBaseUrl();
-            showLoading('getLoading');
-
-            try {
-                // Encode the parameters
-                const encodedEmail = encodeURIComponent(email);
-                const encodedMessage = encodeURIComponent(message);
-                const encodedDiscordId = encodeURIComponent(discordId);
-
-                const url = `${baseUrl}/api/${apiKey}/email-${encodedEmail}/message-${encodedMessage}/id-${encodedDiscordId}`;
-
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Origin': window.location.origin,
-                        'Referer': window.location.href
-                    }
-                });
-
-                const data = await response.json();
-                displayResponse('getResponse', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    data: data,
-                    request_url: url
-                }, response.ok);
-
-            } catch (error) {
-                displayResponse('getResponse', {
-                    error: 'Network Error',
-                    message: error.message,
-                    type: 'fetch_error'
-                }, false);
-            } finally {
-                hideLoading('getLoading');
-            }
-        }
-
-        async function runCompleteTest() {
-            const apiKey = getApiKey();
-            if (!apiKey) return;
-
-            showLoading('completeTestLoading');
             
-            const results = {
-                timestamp: new Date().toISOString(),
-                tests: [],
-                summary: {
-                    total: 0,
-                    passed: 0,
-                    failed: 0
-                }
-            };
-
-            // Test 1: Validation
+            showLoading();
+            
+            const url = `${baseUrl}/api/${apiKey}/email-${encodeURIComponent(email)}/message-${encodeURIComponent(message)}`;
+            
             try {
-                const response = await fetch(`${getBaseUrl()}/validate/${apiKey}`, {
-                    headers: { 'Origin': window.location.origin, 'Referer': window.location.href }
-                });
-                const data = await response.json();
-                results.tests.push({
-                    name: 'Validation Test',
-                    status: response.ok ? 'PASS' : 'FAIL',
-                    response_code: response.status,
-                    data: data
-                });
-                results.summary.total++;
-                if (response.ok) results.summary.passed++;
-                else results.summary.failed++;
+                const response = await fetch(url);
+                const result = await response.json();
+                showResponse(`GET Basic Response (${response.status})`, result, !response.ok);
             } catch (error) {
-                results.tests.push({
-                    name: 'Validation Test',
-                    status: 'ERROR',
-                    error: error.message
-                });
-                results.summary.total++;
-                results.summary.failed++;
+                showResponse('GET Basic Error', { error: error.message }, true);
             }
-
-            // Test 2: Key Info
-            try {
-                const response = await fetch(`${getBaseUrl()}/keys/${apiKey}/info`, {
-                    headers: { 'Origin': window.location.origin, 'Referer': window.location.href }
-                });
-                const data = await response.json();
-                results.tests.push({
-                    name: 'Key Info Test',
-                    status: response.ok ? 'PASS' : 'FAIL',
-                    response_code: response.status,
-                    data: data
-                });
-                results.summary.total++;
-                if (response.ok) results.summary.passed++;
-                else results.summary.failed++;
-            } catch (error) {
-                results.tests.push({
-                    name: 'Key Info Test',
-                    status: 'ERROR',
-                    error: error.message
-                });
-                results.summary.total++;
-                results.summary.failed++;
-            }
-
-            // Test 3: Bot Invite
-            try {
-                const response = await fetch(`${getBaseUrl()}/invite-link`);
-                const data = await response.json();
-                results.tests.push({
-                    name: 'Bot Invite Test',
-                    status: response.ok ? 'PASS' : 'FAIL',
-                    response_code: response.status,
-                    data: data
-                });
-                results.summary.total++;
-                if (response.ok) results.summary.passed++;
-                else results.summary.failed++;
-            } catch (error) {
-                results.tests.push({
-                    name: 'Bot Invite Test',
-                    status: 'ERROR',
-                    error: error.message
-                });
-                results.summary.total++;
-                results.summary.failed++;
-            }
-
-            // Test 4: Send Message POST (if form has data)
-            const postEmail = document.getElementById('postEmail').value.trim();
-            const postMessage = document.getElementById('postMessage').value.trim();
-            if (postEmail && postMessage) {
-                try {
-                    const payload = { email: postEmail, message: postMessage };
-                    const postDiscordId = document.getElementById('postDiscordId').value.trim();
-                    if (postDiscordId) payload.discord_id = postDiscordId;
-
-                    const response = await fetch(`${getBaseUrl()}/api/${apiKey}/send`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Origin': window.location.origin,
-                            'Referer': window.location.href
-                        },
-                        body: JSON.stringify(payload)
-                    });
-                    const data = await response.json();
-                    results.tests.push({
-                        name: 'Send Message POST Test',
-                        status: response.ok ? 'PASS' : 'FAIL',
-                        response_code: response.status,
-                        data: data,
-                        request_payload: payload
-                    });
-                    results.summary.total++;
-                    if (response.ok) results.summary.passed++;
-                    else results.summary.failed++;
-                } catch (error) {
-                    results.tests.push({
-                        name: 'Send Message POST Test',
-                        status: 'ERROR',
-                        error: error.message
-                    });
-                    results.summary.total++;
-                    results.summary.failed++;
-                }
-            }
-
-            // Test 5: Send Message GET (if form has data)
-            const getEmail = document.getElementById('getEmail').value.trim();
-            const getMessage = document.getElementById('getMessage').value.trim();
-            const getDiscordId = document.getElementById('getDiscordId').value.trim();
-            if (getEmail && getMessage && getDiscordId) {
-                try {
-                    const url = `${getBaseUrl()}/api/${apiKey}/email-${encodeURIComponent(getEmail)}/message-${encodeURIComponent(getMessage)}/id-${encodeURIComponent(getDiscordId)}`;
-                    const response = await fetch(url, {
-                        headers: { 'Origin': window.location.origin, 'Referer': window.location.href }
-                    });
-                    const data = await response.json();
-                    results.tests.push({
-                        name: 'Send Message GET Test',
-                        status: response.ok ? 'PASS' : 'FAIL',
-                        response_code: response.status,
-                        data: data,
-                        request_url: url
-                    });
-                    results.summary.total++;
-                    if (response.ok) results.summary.passed++;
-                    else results.summary.failed++;
-                } catch (error) {
-                    results.tests.push({
-                        name: 'Send Message GET Test',
-                        status: 'ERROR',
-                        error: error.message
-                    });
-                    results.summary.total++;
-                    results.summary.failed++;
-                }
-            }
-
-            hideLoading('completeTestLoading');
-            displayResponse('completeTestResponse', results, results.summary.failed === 0);
         }
-
-        function clearAllResponses() {
-            const responseElements = [
-                'validateResponse',
-                'keyInfoResponse', 
-                'inviteResponse',
-                'postResponse',
-                'getResponse',
-                'completeTestResponse'
-            ];
-
-            responseElements.forEach(id => {
-                const element = document.getElementById(id);
-                element.textContent = '';
-                element.className = 'response';
-            });
-
-            updateSystemInfo();
+        
+        async function testGetDiscord() {
+            const apiKey = document.getElementById('apiKey').value;
+            const email = document.getElementById('getDiscordEmail').value;
+            const message = document.getElementById('getDiscordMessage').value;
+            const discordId = document.getElementById('getDiscordId').value;
+            
+            if (!apiKey || !email || !message || !discordId) {
+                alert('Please fill in all fields for Discord GET request');
+                return;
+            }
+            
+            showLoading();
+            
+            const url = `${baseUrl}/api/${apiKey}/email-${encodeURIComponent(email)}/message-${encodeURIComponent(message)}/id-${discordId}`;
+            
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                showResponse(`GET Discord Response (${response.status})`, result, !response.ok);
+            } catch (error) {
+                showResponse('GET Discord Error', { error: error.message }, true);
+            }
         }
+        
+        async function testValidation() {
+            const apiKey = document.getElementById('apiKey').value;
+            
+            if (!apiKey) {
+                alert('Please enter your API Key');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${baseUrl}/validate/${apiKey}`);
+                const result = await response.json();
+                showResponse(`Validation Response (${response.status})`, result, !response.ok);
+            } catch (error) {
+                showResponse('Validation Error', { error: error.message }, true);
+            }
+        }
+        
+        async function testKeyInfo() {
+            const apiKey = document.getElementById('apiKey').value;
+            
+            if (!apiKey) {
+                alert('Please enter your API Key');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${baseUrl}/keys/${apiKey}/info`);
+                const result = await response.json();
+                showResponse(`Key Info Response (${response.status})`, result, !response.ok);
+            } catch (error) {
+                showResponse('Key Info Error', { error: error.message }, true);
+            }
+        }
+        
+        // Initialize URL previews
+        updateUrlPreviews();
     </script>
 </body>
 </html>
