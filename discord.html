@@ -47,6 +47,8 @@
             --success: #4CAF50;
             --error: #f44336;
             --online: #23A55A;
+            --api-purple: #8B5CF6;
+            --api-blue: #3B82F6;
         }
 
         body {
@@ -204,20 +206,6 @@
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .server-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.7), rgba(71, 82, 196, 0.7));
-            z-index: 1;
         }
 
         .server-icon-container {
@@ -403,6 +391,154 @@
             line-height: 1.5;
         }
 
+        /* API Promotion Section */
+        .api-promotion {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-promotion::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.02) 0%, transparent 50%, rgba(59, 130, 246, 0.02) 100%);
+            animation: apiShimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes apiShimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .api-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--api-purple), var(--api-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .api-description {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .api-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .api-feature {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .api-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .api-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-feature-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .api-feature-description {
+            color: var(--text-dim);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .api-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .api-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .api-btn-primary {
+            background: linear-gradient(135deg, var(--api-purple), var(--api-blue));
+            color: white;
+        }
+
+        .api-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .api-btn-secondary {
+            background: transparent;
+            color: var(--api-purple);
+            border-color: var(--api-purple);
+        }
+
+        .api-btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .api-btn-discord {
+            background: linear-gradient(135deg, var(--discord), var(--discord-dark));
+            color: white;
+        }
+
+        .api-btn-discord:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+        }
+
         /* Error State */
         .error-container {
             background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(255, 107, 53, 0.1));
@@ -496,6 +632,24 @@
             .community-benefits {
                 padding: 2rem;
             }
+
+            .api-promotion {
+                padding: 2rem;
+            }
+
+            .api-features {
+                grid-template-columns: 1fr;
+            }
+
+            .api-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .api-btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -587,6 +741,42 @@
             </div>
         </div>
 
+        <!-- API Promotion Section -->
+        <div class="api-promotion">
+            <h2 class="api-title">Discord Integration APIs</h2>
+            <p class="api-description">Power your projects with our comprehensive Discord APIs! Featuring secure messaging, server info retrieval, and real-time data with advanced authentication and logging.</p>
+            
+            <div class="api-features">
+                <div class="api-feature">
+                    <div class="api-feature-icon">💬</div>
+                    <h3 class="api-feature-title">Discord Message API</h3>
+                    <p class="api-feature-description">Send automated messages to Discord channels with URL authentication, owner verification, and comprehensive usage logging. Perfect for notifications and alerts.</p>
+                </div>
+                <div class="api-feature">
+                    <div class="api-feature-icon">📊</div>
+                    <h3 class="api-feature-title">Discord Server Info API</h3>
+                    <p class="api-feature-description">Fetch real-time server statistics, member counts, online status, invite links, and server details. Ideal for community dashboards and integrations.</p>
+                </div>
+                <div class="api-feature">
+                    <div class="api-feature-icon">🔒</div>
+                    <h3 class="api-feature-title">Secure & Reliable</h3>
+                    <p class="api-feature-description">Enterprise-grade security with API key authentication, rate limiting, comprehensive logging, and 99.9% uptime guarantee for production applications.</p>
+                </div>
+            </div>
+
+            <div class="api-buttons">
+                <a href="https://discord.gg/cQQybxV8xW" class="api-btn api-btn-discord" target="_blank">
+                    💬 Join Discord
+                </a>
+                <a href="https://dms-api.mcboss.top/docs" class="api-btn api-btn-primary" target="_blank">
+                    🔗 API Documentation
+                </a>
+                <a href="https://dms-api.mcboss.top/status" class="api-btn api-btn-secondary" target="_blank">
+                    ⚡ API Status
+                </a>
+            </div>
+        </div>
+
         <!-- Error State -->
         <div id="errorContainer" class="error-container" style="display: none;">
             <h2 class="error-title">Connection Failed</h2>
@@ -659,21 +849,8 @@
             document.getElementById('totalMembers').textContent = formatNumber(serverInfo.server_member_count || 0);
             document.getElementById('onlineMembers').textContent = formatNumber(serverInfo.server_online_member_count || 0);
 
-            // Server icon and banner
+            // Server icon
             const serverIcon = document.getElementById('serverIcon');
-            const serverHeader = document.querySelector('.server-header');
-            
-            // Set server banner
-            const backupBanner = 'https://media.cdn.community.lambdageneration.com/media-images/1657676783140BC-BcBZC2DuBYDvf.gif?size=normal';
-            if (serverInfo.server_banner_url) {
-                serverHeader.style.backgroundImage = `url(${serverInfo.server_banner_url})`;
-                console.log('Using server banner from API:', serverInfo.server_banner_url);
-            } else {
-                serverHeader.style.backgroundImage = `url(${backupBanner})`;
-                console.log('Using backup banner:', backupBanner);
-            }
-            
-            // Set server icon
             if (serverInfo.server_icon_url) {
                 serverIcon.src = serverInfo.server_icon_url;
                 serverIcon.style.display = 'block';
