@@ -204,6 +204,20 @@
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .server-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.7), rgba(71, 82, 196, 0.7));
+            z-index: 1;
         }
 
         .server-icon-container {
@@ -645,8 +659,21 @@
             document.getElementById('totalMembers').textContent = formatNumber(serverInfo.server_member_count || 0);
             document.getElementById('onlineMembers').textContent = formatNumber(serverInfo.server_online_member_count || 0);
 
-            // Server icon
+            // Server icon and banner
             const serverIcon = document.getElementById('serverIcon');
+            const serverHeader = document.querySelector('.server-header');
+            
+            // Set server banner
+            const backupBanner = 'https://media.cdn.community.lambdageneration.com/media-images/1657676783140BC-BcBZC2DuBYDvf.gif?size=normal';
+            if (serverInfo.server_banner_url) {
+                serverHeader.style.backgroundImage = `url(${serverInfo.server_banner_url})`;
+                console.log('Using server banner from API:', serverInfo.server_banner_url);
+            } else {
+                serverHeader.style.backgroundImage = `url(${backupBanner})`;
+                console.log('Using backup banner:', backupBanner);
+            }
+            
+            // Set server icon
             if (serverInfo.server_icon_url) {
                 serverIcon.src = serverInfo.server_icon_url;
                 serverIcon.style.display = 'block';
