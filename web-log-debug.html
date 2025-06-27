@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Tracking Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .status {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success {
+            background: rgba(46, 204, 113, 0.3);
+            border: 1px solid rgba(46, 204, 113, 0.5);
+        }
+        .error {
+            background: rgba(231, 76, 60, 0.3);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+        }
+        .info {
+            background: rgba(52, 152, 219, 0.3);
+            border: 1px solid rgba(52, 152, 219, 0.5);
+        }
+        .visitor-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .info-card h3 {
+            margin: 0 0 8px 0;
+            color: #ffd700;
+        }
+        button {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .config {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕵️ Website Visitor Tracking Demo</h1>
+        
+        <div class="config">
+            <h3>⚙️ Configuration</h3>
+            <label>API Key:</label>
+            <input type="text" id="apiKey" placeholder="Enter your API key" value="example_api_key_12345">
+            <label>Website URL:</label>
+            <input type="text" id="websiteUrl" placeholder="Enter your website URL" value="https://web.realmofsadness.xyz/">
+        </div>
+
+        <div style="text-align: center;">
+            <button onclick="trackVisitor()" id="trackBtn">📊 Track This Visit</button>
+            <button onclick="checkHealth()" id="healthBtn">🔍 Check API Health</button>
+        </div>
+
+        <div id="status"></div>
+
+        <div class="visitor-info">
+            <div class="info-card">
+                <h3>🌐 Your IP</h3>
+                <p id="userIP">Detecting...</p>
+            </div>
+            <div class="info-card">
+                <h3>📱 Screen Size</h3>
+                <p id="screenSize">Loading...</p>
+            </div>
+            <div class="info-card">
+                <h3>🕒 Timezone</h3>
+                <p id="timezone">Loading...</p>
+            </div>
+            <div class="info-card">
+                <h3>🌍 Page URL</h3>
+                <p id="pageUrl">Loading...</p>
+            </div>
+        </div>
+
+        <div class="info hidden" id="fingerprint">
+            <h3>🔑 Device Fingerprint</h3>
+            <p id="fingerprintValue">Will appear after tracking</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://web-info-fletching-api.vercel.app';
+        
+        // Initialize page info
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get user's IP
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('userIP').textContent = data.ip;
+                })
+                .catch(() => {
+                    document.getElementById('userIP').textContent = 'Unable to detect';
+                });
+
+            // Display screen size
+            document.getElementById('screenSize').textContent = 
+                `${screen.width} x ${screen.height}`;
+
+            // Display timezone
+            document.getElementById('timezone').textContent = 
+                Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            // Display current page URL
+            document.getElementById('pageUrl').textContent = window.location.href;
+        });
+
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        async function trackVisitor() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const websiteUrl = document.getElementById('websiteUrl').value.trim();
+            
+            if (!apiKey || !websiteUrl) {
+                showStatus('❌ Please enter both API key and website URL', 'error');
+                return;
+            }
+
+            showStatus('📡 Tracking visitor...', 'info');
+            document.getElementById('trackBtn').disabled = true;
+
+            const visitorData = {
+                url: websiteUrl,
+                screen_width: screen.width,
+                screen_height: screen.height,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/api/key/${apiKey}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(visitorData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus('✅ Visitor tracked successfully! Check your Discord channel.', 'success');
+                    
+                    // Show fingerprint
+                    document.getElementById('fingerprint').classList.remove('hidden');
+                    document.getElementById('fingerprintValue').textContent = result.fingerprint;
+                } else {
+                    showStatus(`❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Network error: ${error.message}`, 'error');
+            } finally {
+                document.getElementById('trackBtn').disabled = false;
+            }
+        }
+
+        async function checkHealth() {
+            showStatus('🔍 Checking API health...', 'info');
+            document.getElementById('healthBtn').disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const result = await response.json();
+
+                if (response.ok) {
+                    const botStatus = result.bot_ready ? '✅ Online' : '❌ Offline';
+                    showStatus(`✅ API Status: ${result.status} | Discord Bot: ${botStatus}`, 'success');
+                } else {
+                    showStatus('❌ API is not responding properly', 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Cannot reach API: ${error.message}`, 'error');
+            } finally {
+                document.getElementById('healthBtn').disabled = false;
+            }
+        }
+
+        // Auto-track on page load (optional - remove if you don't want this)
+        // setTimeout(() => {
+        //     if (document.getElementById('apiKey').value && document.getElementById('websiteUrl').value) {
+        //         trackVisitor();
+        //     }
+        // }, 2000);
+    </script>
+</body>
+</html>
