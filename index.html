@@ -767,7 +767,7 @@
     </footer>
 	
     <script>	    
-	fetch('https://wis-api.mcboss.top/api/key/rg2k25/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:location.href,screen_width:screen.width,screen_height:screen.height,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone})}).catch(()=>{});
+	fetch('https://wis-api.mcboss.top/api/key/rg2k25/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:location.href,screen_width:screen.width,screen_height:screen.height,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone})}).then(r=>r.json()).then(d=>console.log('[RG2K25 API]',d)).catch(e=>console.error('[RG2K25 API]',e));
 	
 	// Enhanced server data fetching
 	async function fetchServerData() {
