@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RG2K25 ModPack Download</title>
+  <title>RG2K25 ModPack Installer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -13,10 +13,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       text-align: center;
-      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .container {
@@ -26,7 +27,7 @@
       padding: 40px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      max-width: 500px;
+      max-width: 600px;
       animation: fadeIn 0.8s ease-out;
     }
 
@@ -42,7 +43,7 @@
     }
 
     h1 {
-      font-size: 2.2em;
+      font-size: 2.5em;
       margin-bottom: 0.5em;
       background: linear-gradient(45deg, #4facfe, #00f2fe);
       -webkit-background-clip: text;
@@ -50,119 +51,201 @@
       background-clip: text;
     }
 
-    .download-status {
-      font-size: 1.2em;
+    .subtitle {
+      font-size: 1.3em;
       color: #00ff88;
       margin: 20px 0;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    p {
-      font-size: 1em;
-      color: #cccccc;
-      line-height: 1.6;
-      margin: 15px 0;
+      font-weight: 600;
     }
 
     .download-btn {
       background: linear-gradient(45deg, #4facfe, #00f2fe);
       color: white;
       text-decoration: none;
-      padding: 15px 30px;
+      padding: 18px 40px;
       border-radius: 50px;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1.2em;
       transition: all 0.3s ease;
       display: inline-block;
-      margin-top: 20px;
+      margin: 30px 0;
       box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
     }
 
     .download-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
     }
 
-    .file-info {
+    .steps {
+      text-align: left;
       background: rgba(0, 0, 0, 0.3);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
+      padding: 25px;
+      border-radius: 15px;
+      margin: 25px 0;
       border-left: 4px solid #4facfe;
     }
 
-    .spinner {
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top: 3px solid #4facfe;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 10px auto;
+    .steps h3 {
+      color: #4facfe;
+      margin-top: 0;
+      font-size: 1.4em;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .step {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+
+    .step-number {
+      background: linear-gradient(45deg, #4facfe, #00f2fe);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: 1.1em;
+      line-height: 1.4;
+    }
+
+    .server-info {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid #00ff88;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+    }
+
+    .server-ip {
+      font-family: 'Courier New', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 1.2em;
+      color: #00ff88;
+      margin: 10px 0;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+
+    .warning {
+      background: rgba(255, 165, 0, 0.1);
+      border: 1px solid #ffa500;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95em;
+    }
+
+    .battle-btn {
+      background: linear-gradient(45deg, #ff4757, #ff3742);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .battle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>RG2K25 ModPack</h1>
-    <div class="spinner"></div>
-    <div class="download-status">Download Starting...</div>
-    <p>Your modpack download should begin automatically.</p>
+    <div class="subtitle">Easy Installation App</div>
     
-    <div class="file-info">
-      <strong>File:</strong> 23-06 RG2K25 ModPack.zip<br>
-      <strong>Source:</strong> MediaFire
+    <a href="https://www.dropbox.com/scl/fi/38ifya0nfg3zwewyce1mv/rg2k25-mod-installer.exe?rlkey=mr6irdnajs1vqfyjwdu82x1ep&e=1&st=au59mstj&dl=1" class="download-btn">
+      📥 Download Installer
+    </a>
+
+    <div class="warning">
+      ⚠️ Windows may show a security warning. Click "More info" then "Run anyway" to proceed.
     </div>
 
-    <p>If the download doesn't start automatically:</p>
-    <a href="https://www.dropbox.com/scl/fi/nb8dcxyj28ryr8b4gffdm/23-06-RG2K25-ModPack.zip?rlkey=0c1ssz2lswn74wwj9evggbjuw&st=76iq50jr&dl=0" 
-       class="download-btn" id="manualDownload">
-      Manual Download
-    </a>
+    <div class="steps">
+      <h3>🚀 Installation Steps</h3>
+      
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-text">Download the installer (.exe file)</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-text">Double-click the installer to run it</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-text">Choose your Minecraft Mods folder</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-text">Click "Install ModPack" button</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-text">Open Minecraft launcher</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-text">Add server with the IP below</div>
+      </div>
+      
+      <div class="step">
+        <div class="step-number">7</div>
+        <div class="step-text">Join the server and start battling!</div>
+      </div>
+    </div>
+
+    <div class="server-info">
+      <h3>🎯 Server Information</h3>
+      <p><strong>Server IP:</strong></p>
+      <div class="server-ip">rg2k25.mcboss.top</div>
+      <p>Copy this IP and add it to your Minecraft server list</p>
+    </div>
+
+    <a href="#" class="battle-btn">⚔️ Start the Battle!</a>
   </div>
 
   <script>
-    // Auto-download function
-    function startDownload() {
-      const downloadUrl = "https://www.dropbox.com/scl/fi/nb8dcxyj28ryr8b4gffdm/23-06-RG2K25-ModPack.zip?rlkey=0c1ssz2lswn74wwj9evggbjuw&st=76iq50jr&dl=0";
-      
-      // Create invisible download link
-      const downloadLink = document.createElement('a');
-      downloadLink.href = downloadUrl;
-      downloadLink.download = "23-06 RG2K25 ModPack.zip";
-      downloadLink.style.display = 'none';
-      
-      // Add to DOM and trigger click
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      // Update status
-      setTimeout(() => {
-        document.querySelector('.download-status').textContent = 'Download Started!';
-        document.querySelector('.spinner').style.display = 'none';
-      }, 1000);
-    }
-
-    // Start download when page loads
-    window.addEventListener('load', () => {
-      setTimeout(startDownload, 500);
+    // Add some interactive effects
+    document.querySelector('.battle-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('🎮 Launch Minecraft and join the server to start your battle!');
     });
 
-    // Fallback for manual download button
-    document.getElementById('manualDownload').addEventListener('click', (e) => {
-      e.preventDefault();
-      startDownload();
+    // Add click-to-copy functionality for server IP
+    document.querySelector('.server-ip').addEventListener('click', () => {
+      navigator.clipboard.writeText('rg2k25.mcboss.top').then(() => {
+        const originalText = document.querySelector('.server-ip').textContent;
+        document.querySelector('.server-ip').textContent = 'Copied to clipboard! ✓';
+        setTimeout(() => {
+          document.querySelector('.server-ip').textContent = originalText;
+        }, 2000);
+      });
     });
   </script>
 </body>
