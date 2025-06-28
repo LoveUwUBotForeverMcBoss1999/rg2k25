@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RG2K25 ModPack Download</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 500px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 0.5em;
+      background: linear-gradient(45deg, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .download-status {
+      font-size: 1.2em;
+      color: #00ff88;
+      margin: 20px 0;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    p {
+      font-size: 1em;
+      color: #cccccc;
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+
+    .download-btn {
+      background: linear-gradient(45deg, #4facfe, #00f2fe);
+      color: white;
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+    }
+
+    .file-info {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border-left: 4px solid #4facfe;
+    }
+
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid #4facfe;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>RG2K25 ModPack</h1>
+    <div class="spinner"></div>
+    <div class="download-status">Download Starting...</div>
+    <p>Your modpack download should begin automatically.</p>
+    
+    <div class="file-info">
+      <strong>File:</strong> 23-06 RG2K25 ModPack.zip<br>
+      <strong>Source:</strong> MediaFire
+    </div>
+
+    <p>If the download doesn't start automatically:</p>
+    <a href="https://download1500.mediafire.com/5iruh2bba3jgKzWIABXolouVQ3wiNzoMhZZtUj3bmXukGKSfiB0rJZ0ZMN9V1f2MiIEbYtIlmq4n5htf_G-mZtzsY_sxaK7EjS3peasBsxX9frGY9TDhweo3Et0I_dF5Hmp2d8s-ZbZFO5qt_T-s5IP6-xoaJp_cIieqPFAxPLIVhzc/adb8dk4a3uk5m1x/23-06+RG2K25+ModPack.zip" 
+       class="download-btn" id="manualDownload">
+      Manual Download
+    </a>
+  </div>
+
+  <script>
+    // Auto-download function
+    function startDownload() {
+      const downloadUrl = "https://download1500.mediafire.com/5iruh2bba3jgKzWIABXolouVQ3wiNzoMhZZtUj3bmXukGKSfiB0rJZ0ZMN9V1f2MiIEbYtIlmq4n5htf_G-mZtzsY_sxaK7EjS3peasBsxX9frGY9TDhweo3Et0I_dF5Hmp2d8s-ZbZFO5qt_T-s5IP6-xoaJp_cIieqPFAxPLIVhzc/adb8dk4a3uk5m1x/23-06+RG2K25+ModPack.zip";
+      
+      // Create invisible download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = downloadUrl;
+      downloadLink.download = "23-06 RG2K25 ModPack.zip";
+      downloadLink.style.display = 'none';
+      
+      // Add to DOM and trigger click
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      // Update status
+      setTimeout(() => {
+        document.querySelector('.download-status').textContent = 'Download Started!';
+        document.querySelector('.spinner').style.display = 'none';
+      }, 1000);
+    }
+
+    // Start download when page loads
+    window.addEventListener('load', () => {
+      setTimeout(startDownload, 500);
+    });
+
+    // Fallback for manual download button
+    document.getElementById('manualDownload').addEventListener('click', (e) => {
+      e.preventDefault();
+      startDownload();
+    });
+  </script>
+</body>
+</html>
